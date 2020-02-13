@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CrowdfundCore.Services.Options;
+﻿using CrowdfundCore.Services.Options;
 
 namespace CrowdfundCore.Services
 {
@@ -9,7 +6,7 @@ namespace CrowdfundCore.Services
     {
         Backer AddBacker(AddBackerOptions newBacker);
 
-        bool UpdateBackerOptions(string id, UpdateBackerOptions options);
+        bool UpdateBackerOptions(int id, UpdateBackerOptions options);
     }
 }
 

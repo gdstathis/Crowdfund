@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using CrowdfundCore.Model;
 
 namespace CrowdfundCore.Services.Options
 {
@@ -9,7 +8,8 @@ namespace CrowdfundCore.Services.Options
         public string title { get; set; }
         public string Description { get; set; }
         public decimal budget { get; set; }
-        public string nameCreator { get; set; }
+        public User Creator { get; set; }
         public DateTime deadline { get; set; }
+
     }
 }

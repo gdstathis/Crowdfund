@@ -1,23 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using CrowdfundCore.Services.Options;
 
 namespace CrowdfundCore.Services
 {
     public class ProjectService
     {
-        public List<Project> ProjectLists=new List<Project>();
+        public List<Project> ProjectLists = new List<Project>();
         public Project CreateProject(AddProjectOptions options)
         {
             if (options == null) {
                 return null;
             }
-            if (!string.IsNullOrWhiteSpace(options.title)) {
+            if (string.IsNullOrWhiteSpace(options.title)) {
                 return null;
             }
-            if (!string.IsNullOrWhiteSpace(options.nameCreator)) {
+            if (options.Creator.id_user == null) {
                 return null;
             }
             var newProject = new Project()
@@ -35,19 +33,19 @@ namespace CrowdfundCore.Services
         }
         public Project getProjectById(string id)
         {
-            if (id==null) {
+            if (id == null) {
                 return null;
             }
             var project = ProjectLists.Where(p => p.id_project == id).SingleOrDefault();
             return project;
         }
-        public bool UpdateProject(string id,UpdateProjectOptions options)
+        public bool UpdateProject(string id, UpdateProjectOptions options)
         {
             if (!string.IsNullOrEmpty(id)) {
                 return false;
             }
             if (options == null) {
-                return false; 
+                return false;
             }
             var upproject = getProjectById(id);
             if (upproject == null) {

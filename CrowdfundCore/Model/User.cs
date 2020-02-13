@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace CrowdfundCore.Model
 {
@@ -10,15 +8,15 @@ namespace CrowdfundCore.Model
         public string lastname { get; set; }
         public string email { get; set; }
         public string phone { get; set; }
-        public string id_user { get; set; }
+        public int id_user { get; set; }
 
-        public ICollection<ProjectCreator> ProjectCreator { get; set; }
-        public ICollection<Backer> Backer { get; set; }
+       // public ICollection<ProjectCreator> ProjectCreator { get; set; }
+        // public ICollection<Backer> Backer { get; set; }
 
         public User()
         {
-            Backer = new List<Backer>();
-            ProjectCreator = new List<ProjectCreator>();
+            //  Backer = new List<Backer>();
+           // ProjectCreator = new List<ProjectCreator>();
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using CrowdfundCore.Services.Options;
 
 namespace CrowdfundCore.Services
@@ -37,7 +35,7 @@ namespace CrowdfundCore.Services
             if (updateCreator.TotalCost <= 0.0M) {
                 return false;
             }
-            ProjectCreatorList.Find(p => p.user.id_user == ProjectCreator.user.id_user).TotalCost = updateCreator.TotalCost
+            ProjectCreatorList.Find(p => p.user.id_user == ProjectCreator.user.id_user).TotalCost = updateCreator.TotalCost;
 
             return true;
 

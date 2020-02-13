@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CrowdfundCore.Model
+﻿namespace CrowdfundCore.Model
 {
     public class Rewards
     {
+        public string title { get; set; }
+        public string description { get; set; }
+        public decimal reward_discount { get; set; }
     }
 }

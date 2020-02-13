@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using CrowdfundCore.Model;
 
 namespace CrowdfundCore.Services.Options
 {
@@ -9,6 +7,6 @@ namespace CrowdfundCore.Services.Options
         public decimal Donate { get; set; }
         public User user { get; set; }
 
-        public string id_backer { get; set; }
+        public int id_backer { get; set; }
     }
 }

@@ -1,43 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CrowdfundCore.Data;
+﻿using CrowdfundCore.Model;
 using Microsoft.EntityFrameworkCore;
 namespace CrowdfundCore.Data
 {
-    public class CrowdfundDbContext: DbContext
+    public class CrowdfundDbContext : DbContext
+
     {
-            private readonly string connectionString_;
+        private readonly string connectionString_;
+        public CrowdfundDbContext() : base()
+        {
+            connectionString_ = "Server=localhost;Database=Crowdfund;User Id=sa;Password=QWE123!@#";
+        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+            optionsBuilder.UseSqlServer(connectionString_);
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.
+                Entity<User>().
+                ToTable("User");
+            modelBuilder.
+                Entity<User>().
+                ToTable("User").Property(p => p.id_user).IsRequired();
+      
+            modelBuilder.
+                Entity<User>().
+                ToTable("User").HasKey(p => p.id_user);
+            modelBuilder.
+                Entity<Project>().
+                ToTable("Project").HasKey(p => p.id_project);
 
-            /// <summary>
-            /// Parameterless constructor required for Migrations
-            /// to run
-            /// </summary>
-            public CrowdfundDbContext() : base()
-            {
-                connectionString_ = "Server=localhost;Database=Crowdfund;User Id=sa;Password=QWE123!@#";
-            }
 
-            public CrowdfundDbContext(string connString)
-            {
-                connectionString_ = connString;
-            }
 
-            protected override void OnModelCreating(ModelBuilder modelBuilder)
-            {
-                base.OnModelCreating(modelBuilder);
-
-               
-
-            }
-
-            protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            {
-                 base.OnConfiguring(optionsBuilder);
-                 optionsBuilder.UseSqlServer(connectionString_);
         }
     }
-    
+
 }

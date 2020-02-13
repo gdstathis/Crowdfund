@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crowdfund", "Crowdfund.csproj", "{2F7B1206-751A-4B4A-AD78-01AB7E21DC19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrowdfundCore", "CrowdfundCore\CrowdfundCore.csproj", "{3140DDDF-78D6-4822-8AE3-3C1D234DEDDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrowdfundCore", "CrowdfundCore\CrowdfundCore.csproj", "{3140DDDF-78D6-4822-8AE3-3C1D234DEDDE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crowdfund.Tests", "..\Crowdfund.Tests\Crowdfund.Tests.csproj", "{71310415-2551-4569-A0D3-AD6062CEEFB5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{3140DDDF-78D6-4822-8AE3-3C1D234DEDDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3140DDDF-78D6-4822-8AE3-3C1D234DEDDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3140DDDF-78D6-4822-8AE3-3C1D234DEDDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71310415-2551-4569-A0D3-AD6062CEEFB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71310415-2551-4569-A0D3-AD6062CEEFB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71310415-2551-4569-A0D3-AD6062CEEFB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71310415-2551-4569-A0D3-AD6062CEEFB5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
