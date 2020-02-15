@@ -11,51 +11,41 @@ namespace CrowdfundCore
         {
             var context = new CrowdfundDbContext();
             context.Database.EnsureCreated();
-            Console.WriteLine("Hello World!");
-            var backer = new Backer()
-            {
-                Donate = 1500,
-                Email = "fsdfsdF",
-                Firstname = "sdadas",
-                Phone = "sadasd",
-                Lastname = "Sadasd"
-            };
-            var backer2 = new Backer()
-            {
-                Donate = 15002,
-                Email = "1111111111111",
-                Firstname = "11111111111",
-                Phone = "1111111111111111",
-                Lastname = "11111111111111111111"
-            };
+            
             var BackerService = new BackerService(context);
+            var ProjectService = new ProjectService(context);
 
-            //BackerService.AddBacker( new Services.Options.AddBackerOptions
-            //{
-            //    Firstname = "Dimitris",
-            //    Lastname = "Sta",
-            //    Donate = 2800,
-            //    Email = "pnevmatikos@codehub.gr111",
-            //    Phone = "69889889891111"
-            //});
-            BackerService.UpdateBackerOptions(7,new Services.Options.UpdateBackerOptions
+            BackerService.AddBacker(new Services.Options.AddBackerOptions
             {
-                Firstname = "Georg1e",
+                Firstname = "Georgios",
+                Lastname = "Stathis",
+                Donate = 2800,
+                Email = "ggstathis@gmail.com",
+                Phone = "6983124913"
+            });
+            BackerService.UpdateBackerOptions(1,new Services.Options.UpdateBackerOptions
+            {
+                Firstname = "George",
                 Lastname="Stathis",
                 NewDonate=800,
-                Email= "george@yahoo.gr",
-                Phone="69889889891111"
+                Email= "gdstathis@yahoo.gr",
+                Phone="6983078378"
             });
-            var ProjectService = new ProjectService(context);
+            
             ProjectService.CreateProject(new Services.Options.AddProjectOptions
             {
                 Budget = 1500,
-                Title = "1The best project22",
-                Description = "Description22",
+                Title = "Project 1",
+                Description = "Description1",
 
 
             });
-
+            ProjectService.UpdateProject(1,new Services.Options.UpdateProjectOptions
+            {
+                Budget = 1500,
+                Title = "Project 1",
+                Description = "Description1",
+            });
 
             //var BackerService2 = new BackerService(context);
             //BackerService.AddBacker(new Services.Options.AddBackerOptions

@@ -45,7 +45,7 @@ namespace CrowdfundCore.Services
                 context.SaveChanges();
                 Console.WriteLine("ok new");
             } catch (Exception ex) {
-                Console.WriteLine("no new");
+                //Console.WriteLine("no new");
                 return null;
             }            
             return Backer;
