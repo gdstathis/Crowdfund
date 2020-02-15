@@ -19,22 +19,23 @@ namespace CrowdfundCore.Services
             if (options == null) {
                 return null;
             }
+
             if (options.Donate <= 0.0M) {
                 return null;
             }
-            if (options.Email == null) {
+
+            //Email and phone must me submited for new Backer
+            if (string.IsNullOrEmpty(options.Email) || string.IsNullOrEmpty(options.Phone)) {
                 return null;
             }
 
             var Backer = new Backer()
             {
-                Donate = options.Donate,
-               
+                Donate = options.Donate,            
                 Email=options.Email,
-                //Lastname=options.Lastname,
                 Phone=options.Phone
-
             };
+
             if (!string.IsNullOrEmpty(options.Firstname)) { Backer.Firstname = options.Firstname; }
             
             if (!string.IsNullOrEmpty(options.Lastname)) { Backer.Lastname = options.Lastname; }
@@ -46,16 +47,14 @@ namespace CrowdfundCore.Services
             } catch (Exception ex) {
                 Console.WriteLine("no new");
                 return null;
-            }
-            //BackerList.Where(p => p.Id == Backer.Id).FirstOrDefault();
-            
+            }            
             return Backer;
         }
         public bool UpdateBackerOptions(int id, UpdateBackerOptions options)
         {
-            //if (id == null) {
-            //    return false;
-            //}
+            if (id <=0) {
+                return false;
+            }
             if (options == null) {
                 return false;
             }
@@ -65,41 +64,48 @@ namespace CrowdfundCore.Services
                 Console.WriteLine("Does not exist baker with this id");
                 return false;
             }
+
             if (options.Firstname != null) {
                 Backer.Firstname = options.Firstname;
             }
+
             if (options.Lastname != null) {
                 Backer.Lastname = options.Lastname;
             }
+
             if (options.Phone != null) {
                 Backer.Phone = options.Phone;
             }
+
             if (options.Email != null) {
                 Backer.Email = options.Email;
             }
+
             if (options.NewDonate <= 0) {
                 Backer.Donate = options.NewDonate;
             }
+
             context.Update(Backer);
             try {
                 context.SaveChanges();
-                Console.WriteLine("update ok");
+                Console.WriteLine("Update ok");
             } catch (Exception ex) {
-                Console.WriteLine("uPDATE FAIL"+ex);
+                Console.WriteLine("UPDATE FAIL"+ex);
                 return false;
             }
-            //var UpdateBacker = GetBackerById(id);
-            //UpdateBacker.Donate = options.NewDonate;//edw prepei na to allazw kateuthian sthn vasi
+            
             return true;
         }
+
         public Backer GetBackerById(int id)
         {
-            if (id == null) {
+            if (id <=0) {
                 return null;
             }
             var backer = context.Set<Backer>().Find(id);
             return backer;
         }
+
         public IQueryable<Backer> SearchBakers(
             SearchBackerOptions options)
         {
@@ -108,10 +114,15 @@ namespace CrowdfundCore.Services
             }
             var query = context.Set<Backer>().AsQueryable();
             if (!string.IsNullOrWhiteSpace(options.Email)) { 
-                query = query.Where(b => b.Email == options.Email);
+                query = query.Where(e => e.Email == options.Email);
             }
-          
-            return query.Take(1);
+            if (!string.IsNullOrWhiteSpace(options.Phone)) {
+                query = query.Where(p => p.Phone == options.Phone);
+            }
+            if (options.Id>0) {
+                query = query.Where(i => i.Id == options.Id);
+            }
+            return query.Take(10);
         }
     }
 }

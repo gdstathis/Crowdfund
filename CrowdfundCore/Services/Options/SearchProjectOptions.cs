@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Text;
 using CrowdfundCore.Model;
 
-namespace CrowdfundCore
+namespace CrowdfundCore.Services.Options
 {
-    public class Project
+    public class SearchProjectOptions
     {
         /// <summary>
         /// 
@@ -40,7 +40,6 @@ namespace CrowdfundCore
         /// <summary>
         /// 
         /// </summary>
-        //public ProjectCreator Creator { get; set; }
 
         /// <summary>
         /// 
@@ -50,32 +49,7 @@ namespace CrowdfundCore
         /// <summary>
         /// 
         /// </summary>
-        [NotMapped]
-        public ICollection<Rewards> rewardPackages { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [NotMapped]
-        public ICollection<string> Comments { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         public ProjectCategory ProjectCategory { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        [NotMapped]
-        public ICollection<string> Media { get; set; }
-        public Project()
-        {
-            DateCreated = DateTime.Today;
-            Deadline = DateTime.Today.AddDays(25);
-            Comments = new List<string>();
-            Media = new List<string>();
-            rewardPackages = new List<Rewards>();
-        }
     }
 }

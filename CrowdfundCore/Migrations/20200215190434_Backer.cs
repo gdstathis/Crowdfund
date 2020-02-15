@@ -2,7 +2,7 @@
 
 namespace CrowdfundCore.Migrations
 {
-    public partial class Project : Migration
+    public partial class Backer : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

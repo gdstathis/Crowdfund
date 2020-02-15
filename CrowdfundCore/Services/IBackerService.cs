@@ -1,4 +1,5 @@
-﻿using CrowdfundCore.Services.Options;
+﻿using System.Linq;
+using CrowdfundCore.Services.Options;
 
 namespace CrowdfundCore.Services
 {
@@ -7,6 +8,8 @@ namespace CrowdfundCore.Services
         Backer AddBacker(AddBackerOptions newBacker);
 
         bool UpdateBackerOptions(int id, UpdateBackerOptions options);
+
+        IQueryable<Backer> SearchBakers(SearchBackerOptions options);
     }
 }
 

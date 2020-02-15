@@ -7,70 +7,109 @@ namespace CrowdfundCore.Services
 {
     public class ProjectService
     {
-        public List<Project> ProjectLists = new List<Project>();
         private readonly CrowdfundCore.Data.CrowdfundDbContext context;
+        
         public ProjectService(Data.CrowdfundDbContext ctx)
         {
             context = ctx ?? throw new ArgumentNullException(nameof(ctx));
         }
+        
         public Project CreateProject(AddProjectOptions options)
         {
             if (options == null) {
                 return null;
             }
+
             if (string.IsNullOrWhiteSpace(options.Title)) {
                 return null;
             }
+
+            if (string.IsNullOrWhiteSpace(options.Description)) {
+                return null;
+            }
+
+            if (options.Budget<=0) {
+                return null;
+            }
+
             //if (options.Creator == null) {
             //    return null;
             //}
             var newProject = new Project()
             {
                 budget = options.Budget,
-               // Deadline = options.Deadline,
                 Description = options.Description,
-                Title = options.Title,
-                
-                
+                Title = options.Title,    
             };
+
             context.Add(newProject);
+
             try {
                 context.SaveChanges();
-                Console.WriteLine("ok");
+                Console.WriteLine("ok project");
             } catch (Exception ex) {
-                Console.WriteLine("no project");
+                Console.WriteLine("fail add project");
                 Console.WriteLine(ex);
                 return null;
             }
+
             return newProject;
         }
+
         public Project getProjectById(int id)
         {
-            if (id == null) {
+            if (id <=0) {
                 return null;
             }
-            var project = ProjectLists.Where(p => p.Id == id).SingleOrDefault();
+            var project = context.Set<Project>().Find(id);
             return project;
         }
+
         public bool UpdateProject(int id, UpdateProjectOptions options)
         {
             if (id<0) {
                 return false;
             }
+
             if (options == null) {
                 return false;
             }
-            var upproject = getProjectById(id);
-            if (upproject == null) {
+
+            var updproject = getProjectById(id);
+            if (updproject == null) {
                 return false;
             }
-            if (upproject.ProjectCategory != null) {
-                upproject.Description = options.Description;
+
+            if (updproject.Description != null) {
+                updproject.Description = options.Description;
             }
-            if (upproject.Title != null) {
-                upproject.Title = options.Title;
+
+            if (updproject.Title != null) {
+                updproject.Title = options.Title;
             }
+
+            context.Update(updproject);
+            
             return true;
+        }
+
+        public IQueryable<Project> SearchProjects(
+            SearchProjectOptions options)
+        {
+            if (options == null) {
+                return null;
+            }
+            var query = context.Set<Project>().AsQueryable();
+            if (!string.IsNullOrWhiteSpace(options.Title)) {
+                query = query.Where(t => t.Title == options.Title);
+            }
+            if (!string.IsNullOrWhiteSpace(options.Description)) {
+                query = query.Where(d => d.Description == options.Description);
+            }
+            if (options.Id > 0) {
+                query = query.Where(i => i.Id == options.Id);
+            }
+            return query.Take(10);
         }
     }
 }

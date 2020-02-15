@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CrowdfundCore.Migrations
 {
-    public partial class Backer : Migration
+    public partial class Project : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -32,6 +33,8 @@ namespace CrowdfundCore.Migrations
                     Title = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     budget = table.Column<decimal>(nullable: false),
+                    DateCreated = table.Column<DateTime>(nullable: false),
+                    Deadline = table.Column<DateTime>(nullable: false),
                     Status = table.Column<int>(nullable: false),
                     ProjectCategory = table.Column<int>(nullable: false)
                 },
