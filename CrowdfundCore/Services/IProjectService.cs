@@ -9,6 +9,6 @@ namespace CrowdfundCore.Services
 
         bool UpdateProject(int id, UpdateProjectOptions options);
 
-        IQueryable<Project> SearchProjects(SearchProjectOptions options);
+        IQueryable<Project> SearchProjects(SearchProjectOptionsOptions options);
     }
 }

@@ -5,7 +5,7 @@ using CrowdfundCore.Services.Options;
 
 namespace CrowdfundCore.Services
 {
-    public class ProjectService
+    public class ProjectService :IProjectService
     {
         private readonly CrowdfundCore.Data.CrowdfundDbContext context;
         
@@ -94,7 +94,7 @@ namespace CrowdfundCore.Services
         }
 
         public IQueryable<Project> SearchProjects(
-            SearchProjectOptions options)
+            SearchProjectOptionsOptions options)
         {
             if (options == null) {
                 return null;

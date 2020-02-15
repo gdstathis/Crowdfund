@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CrowdfundCore.Services.Options
 {
-    public class SearchBackerOptions
+    public class SearchBackerOptionsOptions
     {
         /// <summary>
         /// 

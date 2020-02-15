@@ -5,7 +5,7 @@ using CrowdfundCore.Model;
 
 namespace CrowdfundCore.Services.Options
 {
-    public class SearchProjectOptions
+    public class SearchProjectOptionsOptions
     {
         /// <summary>
         /// 

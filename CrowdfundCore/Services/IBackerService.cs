@@ -9,7 +9,7 @@ namespace CrowdfundCore.Services
 
         bool UpdateBackerOptions(int id, UpdateBackerOptions options);
 
-        IQueryable<Backer> SearchBakers(SearchBackerOptions options);
+        IQueryable<Backer> SearchBakers(SearchBackerOptionsOptions options);
     }
 }
 

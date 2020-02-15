@@ -107,7 +107,7 @@ namespace CrowdfundCore.Services
         }
 
         public IQueryable<Backer> SearchBakers(
-            SearchBackerOptions options)
+            SearchBackerOptionsOptions options)
         {
             if (options == null) {
                 return null;
