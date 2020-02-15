@@ -1,6 +1,11 @@
-﻿namespace CrowdfundCore.Services
+﻿using CrowdfundCore.Services.Options;
+
+namespace CrowdfundCore.Services
 {
-    interface IProjectService
+    public interface IProjectService
     {
+        Project CreateProject(AddProjectOptions options);
+        bool UpdateProject(int id, UpdateProjectOptions options);
+
     }
 }

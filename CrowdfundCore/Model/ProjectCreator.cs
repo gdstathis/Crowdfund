@@ -4,9 +4,34 @@ namespace CrowdfundCore
 {
     public class ProjectCreator
     {
-        public User user { get; set; }
-        public decimal TotalCost { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Id { get; set; }
 
-        public string id_creator { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Firstname { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Lastname { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Email { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Phone { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public decimal TotalCost { get; set; }
     }
 }

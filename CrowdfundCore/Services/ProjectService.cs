@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CrowdfundCore.Services.Options;
 
@@ -7,41 +8,53 @@ namespace CrowdfundCore.Services
     public class ProjectService
     {
         public List<Project> ProjectLists = new List<Project>();
+        private readonly CrowdfundCore.Data.CrowdfundDbContext context;
+        public ProjectService(Data.CrowdfundDbContext ctx)
+        {
+            context = ctx ?? throw new ArgumentNullException(nameof(ctx));
+        }
         public Project CreateProject(AddProjectOptions options)
         {
             if (options == null) {
                 return null;
             }
-            if (string.IsNullOrWhiteSpace(options.title)) {
+            if (string.IsNullOrWhiteSpace(options.Title)) {
                 return null;
             }
-            if (options.Creator.id_user == null) {
-                return null;
-            }
+            //if (options.Creator == null) {
+            //    return null;
+            //}
             var newProject = new Project()
             {
-                budget = options.budget,
-                deadline = options.deadline,
+                budget = options.Budget,
+               // Deadline = options.Deadline,
                 Description = options.Description,
-                title = options.title
+                Title = options.Title,
+                
+                
             };
-            if (ProjectLists.Contains(newProject)) {
+            context.Add(newProject);
+            try {
+                context.SaveChanges();
+                Console.WriteLine("ok");
+            } catch (Exception ex) {
+                Console.WriteLine("no project");
+                Console.WriteLine(ex);
                 return null;
             }
-            ProjectLists.Add(newProject);
             return newProject;
         }
-        public Project getProjectById(string id)
+        public Project getProjectById(int id)
         {
             if (id == null) {
                 return null;
             }
-            var project = ProjectLists.Where(p => p.id_project == id).SingleOrDefault();
+            var project = ProjectLists.Where(p => p.Id == id).SingleOrDefault();
             return project;
         }
-        public bool UpdateProject(string id, UpdateProjectOptions options)
+        public bool UpdateProject(int id, UpdateProjectOptions options)
         {
-            if (!string.IsNullOrEmpty(id)) {
+            if (id<0) {
                 return false;
             }
             if (options == null) {
@@ -51,11 +64,11 @@ namespace CrowdfundCore.Services
             if (upproject == null) {
                 return false;
             }
-            if (upproject.projectCategory != null) {
+            if (upproject.ProjectCategory != null) {
                 upproject.Description = options.Description;
             }
-            if (upproject.title != null) {
-                upproject.title = options.title;
+            if (upproject.Title != null) {
+                upproject.Title = options.Title;
             }
             return true;
         }

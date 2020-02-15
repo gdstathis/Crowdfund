@@ -7,21 +7,67 @@ namespace CrowdfundCore
 {
     public class Project
     {
-        public string title { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Title { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public decimal budget { get; set; }
-       // public string nameCreator { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        //public DateTime DateCreated { get; set; }
 
-        public DateTime dateCreated { get; set; }
-        public DateTime deadline { get; set; }
-        public string id_project { get; set; }
-        public User Creator { get; set; }
-        public ProjectStatus status { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        //public DateTime Deadline { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        //public ProjectCreator Creator { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ProjectStatus Status { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         [NotMapped]
         public ICollection<Rewards> rewardPackages { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         [NotMapped]
-        public ICollection<string> comments { get; set; }
-        public ProjectCategory projectCategory { get; set; }
+        public ICollection<string> Comments { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ProjectCategory ProjectCategory { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [NotMapped]
+        public ICollection<string> Media { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace CrowdfundCore.Services
 {
-    interface IBackerService
+    public interface IBackerService
     {
         Backer AddBacker(AddBackerOptions newBacker);
 

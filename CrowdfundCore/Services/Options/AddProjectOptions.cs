@@ -5,11 +5,11 @@ namespace CrowdfundCore.Services.Options
 {
     public class AddProjectOptions
     {
-        public string title { get; set; }
+        public string Title { get; set; }
         public string Description { get; set; }
-        public decimal budget { get; set; }
-        public User Creator { get; set; }
-        public DateTime deadline { get; set; }
+        public decimal Budget { get; set; }
+       // public ProjectCreator Creator { get; set; }
+      //  public DateTime Deadline { get; set; }
 
     }
 }

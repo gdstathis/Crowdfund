@@ -4,10 +4,25 @@ namespace CrowdfundCore.Services.Options
 {
     public class UpdateProjectOptions
     {
-        public string title { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Title { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public string Description { get; set; }
-        public decimal budget { get; set; }
-        public string nameCreator { get; set; }
-        public DateTime deadline { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public decimal Budget { get; set; }
+        //public string nameCreator { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+      //  public DateTime Deadline { get; set; }
     }
 }

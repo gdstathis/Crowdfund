@@ -5,8 +5,34 @@ namespace CrowdfundCore.Services.Options
 {
     public class UpdateProjectCreatorOptions
     {
-        //public User user { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public decimal TotalCost { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Firstname { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Lastname { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Email { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Phone { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public ICollection<Rewards> Rewards { get; set; }
     }
 }

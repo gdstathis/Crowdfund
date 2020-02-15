@@ -1,38 +1,49 @@
 ﻿using CrowdfundCore.Model;
 using Microsoft.EntityFrameworkCore;
+using Autofac;
 namespace CrowdfundCore.Data
 {
     public class CrowdfundDbContext : DbContext
-
     {
         private readonly string connectionString_;
+        
         public CrowdfundDbContext() : base()
         {
             connectionString_ = "Server=localhost;Database=Crowdfund;User Id=sa;Password=QWE123!@#";
         }
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
             optionsBuilder.UseSqlServer(connectionString_);
         }
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.
-                Entity<User>().
-                ToTable("User");
+                Entity<Backer>().
+                ToTable("Backer");
             modelBuilder.
-                Entity<User>().
-                ToTable("User").Property(p => p.id_user).IsRequired();
+                Entity<Backer>().
+                HasIndex(p => p.Email).IsUnique();
+            modelBuilder.
+                Entity<Backer>().
+                HasIndex(p => p.Phone).IsUnique();
+            modelBuilder.
+                Entity<ProjectCreator>().
+                ToTable("ProjectCreator").Property(p => p.Id).IsRequired();
       
             modelBuilder.
-                Entity<User>().
-                ToTable("User").HasKey(p => p.id_user);
+                Entity<ProjectCreator>().
+                ToTable("ProjectCreator").HasKey(p => p.Id);
             modelBuilder.
                 Entity<Project>().
-                ToTable("Project").HasKey(p => p.id_project);
-
-
+                ToTable("Project") ;
+            modelBuilder.
+                Entity<Project>().
+                ToTable("Project")
+                .HasIndex(p => p.Id).IsUnique();
 
         }
     }

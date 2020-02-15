@@ -5,10 +5,40 @@ namespace CrowdfundCore
 {
     public class Backer
     {
-        public User user { get; set; }
-        public int? id_backer { get; set; }
-        public decimal donate { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Firstname { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Lastname { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Email { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Phone { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public decimal Donate { get; set; }
         // public ICollection<Rewards> Rewards { get; set; }
-        public ICollection<Project> backers_project { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+       // public ICollection<Project> Backers_project { get; set; }
     }
 }

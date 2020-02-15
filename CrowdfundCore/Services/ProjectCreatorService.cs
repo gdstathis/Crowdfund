@@ -12,16 +12,16 @@ namespace CrowdfundCore.Services
             if (newCreator == null) {
                 return null;
             }
-            if (newCreator.user == null) {
-                return null;
-            }
+            //if (newCreator.user == null) {
+            //    return null;
+            //}
             if (newCreator.TotalCost <= 0.0M) {
                 return null;
             }
 
             var ProjectCreator = new ProjectCreator()
             {
-                user = newCreator.user,
+                //user = newCreator.user,
                 TotalCost = newCreator.TotalCost
             };
             return ProjectCreator;
@@ -35,7 +35,7 @@ namespace CrowdfundCore.Services
             if (updateCreator.TotalCost <= 0.0M) {
                 return false;
             }
-            ProjectCreatorList.Find(p => p.user.id_user == ProjectCreator.user.id_user).TotalCost = updateCreator.TotalCost;
+            //ProjectCreatorList.Find(p => p.user.id_user == ProjectCreator.user.id_user).TotalCost = updateCreator.TotalCost;
 
             return true;
 
