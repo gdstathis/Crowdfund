@@ -20,8 +20,8 @@ namespace CrowdfundCore
                 Firstname = "Georgios",
                 Lastname = "Stathis",
                 Donate = 2800,
-                Email = "ggstathis@gmail.com",
-                Phone = "6983124913"
+                Email = "ggstathis234@gmail.com",
+                Phone = "698312449213"
             });
             BackerService.UpdateBackerOptions(1,new Services.Options.UpdateBackerOptions
             {
@@ -35,8 +35,8 @@ namespace CrowdfundCore
             ProjectService.CreateProject(new Services.Options.AddProjectOptions
             {
                 Budget = 1500,
-                Title = "Project 1",
-                Description = "Description1",
+                Title = "Proj2ect 1",
+                Description = "Des2cription1",
 
 
             });

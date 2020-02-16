@@ -40,12 +40,17 @@ namespace CrowdfundCore
         /// <summary>
         /// 
         /// </summary>
-        //public ProjectCreator Creator { get; set; }
+        public ProjectCreator Creator { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         public ProjectStatus Status { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ICollection<ProjectBacker> Backers { get; set; }
 
         /// <summary>
         /// 

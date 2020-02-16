@@ -1,4 +1,5 @@
-﻿using CrowdfundCore.Model;
+﻿using System.Collections.Generic;
+using CrowdfundCore.Model;
 
 namespace CrowdfundCore
 {
@@ -29,9 +30,14 @@ namespace CrowdfundCore
         /// </summary>
         public string Phone { get; set; }
 
+        ICollection<Project> Projects { get; set; }
         /// <summary>
         /// 
         /// </summary>
         public decimal TotalCost { get; set; }
+        public ProjectCreator()
+        {
+            Projects = new List<Project>();
+        }
     }
 }
