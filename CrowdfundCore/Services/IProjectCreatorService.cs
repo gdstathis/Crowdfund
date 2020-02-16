@@ -7,7 +7,7 @@ namespace CrowdfundCore.Services
     {
         ProjectCreator AddProjectCreator(AddProjectCreatorOptions options);
 
-        bool UpdateProjectCreator(int id, ProjectCreator ProjectCreator, UpdateProjectCreatorOptions options);
+        bool UpdateProjectCreator(int id, UpdateProjectCreatorOptions options);
 
         IQueryable<ProjectCreator> SearchProjectCreators(
             SearchProjectCreatorOptions options);

@@ -23,6 +23,10 @@ namespace CrowdfundCore
                 .RegisterType<BackerService>()
                 .InstancePerLifetimeScope()
                 .As<IBackerService>();
+            builder
+                .RegisterType<ProjectCreatorService>()
+                .InstancePerLifetimeScope()
+                .As<IProjectCreatorService>();
             builder.
                 RegisterType<CrowdfundCore.Data.CrowdfundDbContext>()
                 .InstancePerLifetimeScope()

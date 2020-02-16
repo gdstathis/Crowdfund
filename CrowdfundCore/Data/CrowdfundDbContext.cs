@@ -36,7 +36,7 @@ namespace CrowdfundCore.Data
       
             modelBuilder.
                 Entity<ProjectCreator>().
-                ToTable("ProjectCreator").HasKey(p => p.Id);
+                ToTable("ProjectCreator").HasIndex(p => p.Id);
             modelBuilder.
                 Entity<Project>().
                 ToTable("Project") ;

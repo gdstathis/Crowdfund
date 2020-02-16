@@ -50,7 +50,7 @@ namespace CrowdfundCore.Services
             return ProjectCreator;
 
         }
-        public bool UpdateProjectCreator(int id, ProjectCreator ProjectCreator, UpdateProjectCreatorOptions options)
+        public bool UpdateProjectCreator(int id, UpdateProjectCreatorOptions options)
         {
             if (id < 0) {
                 return false;
