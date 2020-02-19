@@ -1,13 +1,14 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using CrowdfundCore.Services.Options;
 
 namespace CrowdfundCore.Services
 {
     public interface IProjectCreatorService
     {
-        ProjectCreator AddProjectCreator(AddProjectCreatorOptions options);
+        Task<ApiResult<ProjectCreator>> AddProjectCreator(AddProjectCreatorOptions options);
 
-        bool UpdateProjectCreator(int id, UpdateProjectCreatorOptions options);
+        Task<bool> UpdateProjectCreator(int id, UpdateProjectCreatorOptions options);
 
         IQueryable<ProjectCreator> SearchProjectCreators(
             SearchProjectCreatorOptions options);

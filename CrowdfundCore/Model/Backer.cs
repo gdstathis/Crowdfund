@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using CrowdfundCore.Model;
 
 namespace CrowdfundCore
@@ -34,11 +35,14 @@ namespace CrowdfundCore
         /// 
         /// </summary>
         public decimal Donate { get; set; }
-        // public ICollection<Rewards> Rewards { get; set; }
+
+        [NotMapped]
+        public ICollection<Rewards> Rewards { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-       // public ICollection<Project> Backers_project { get; set; }
+        [NotMapped]
+        public ICollection<Project> Backers_project { get; set; }
     }
 }

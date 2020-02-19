@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using CrowdfundCore.Services.Options;
+using Microsoft.EntityFrameworkCore;
 
 namespace CrowdfundCore.Services
 {
@@ -14,27 +16,33 @@ namespace CrowdfundCore.Services
             context = ctx ?? throw new ArgumentNullException(nameof(ctx));
         }
         
-        public Project CreateProject(AddProjectOptions options)
+        public async Task<ApiResult<Project>> CreateProject(AddProjectOptions options)
         {
             if (options == null) {
-                return null;
+                return new ApiResult<Project>(
+                    StatusCode.BadRequest, "Null options");
             }
 
             if (string.IsNullOrWhiteSpace(options.Title)) {
-                return null;
+                return new ApiResult<Project>(
+                    StatusCode.BadRequest, "Null title");
             }
 
             if (string.IsNullOrWhiteSpace(options.Description)) {
-                return null;
+                return new ApiResult<Project>(
+                    StatusCode.BadRequest, "Null description");
             }
 
             if (options.Budget<=0) {
-                return null;
+                return new ApiResult<Project>(
+                    StatusCode.BadRequest, "Invalid project budget");
             }
 
-            //if (options.Creator == null) {
-            //    return null;
-            //}
+            if (options.Creator == null) {
+                return new ApiResult<Project>(
+                    StatusCode.BadRequest, "Null creator");
+            }
+
             var newProject = new Project()
             {
                 budget = options.Budget,
@@ -42,30 +50,39 @@ namespace CrowdfundCore.Services
                 Title = options.Title,    
             };
 
-            context.Add(newProject);
+            await context.AddAsync(newProject);
 
             try {
-                context.SaveChanges();
+                await context.SaveChangesAsync();
                 Console.WriteLine("ok project");
             } catch (Exception ex) {
                 Console.WriteLine("fail add project");
                 Console.WriteLine(ex);
-                return null;
+                return new ApiResult<Project>(
+                    StatusCode.InternalServerError, "Could not save Backer");
             }
 
-            return newProject;
+            return ApiResult<Project>.CreateSuccess(newProject); 
         }
 
-        public Project getProjectById(int id)
+        public async Task<ApiResult<Project>> getProjectById(int id)
         {
             if (id <=0) {
-                return null;
+                return new ApiResult<Project>(
+                        StatusCode.BadRequest, "Null id");
             }
-            var project = context.Set<Project>().Find(id);
-            return project;
+            var project = await context.Set<Project>().SingleOrDefaultAsync(s => s.Id == id);
+            if (project == null) {
+                return new ApiResult<Project>(
+                        StatusCode.NotFound, "Backer not found"); ;
+            }
+            var api = new ApiResult<Project>();
+            api.Data = project;
+            api.ErrorCode = StatusCode.Ok;
+            return api;
         }
 
-        public bool UpdateProject(int id, UpdateProjectOptions options)
+        public async Task<bool> UpdateProject(int id, UpdateProjectOptions options)
         {
             if (id<0) {
                 return false;
@@ -75,7 +92,8 @@ namespace CrowdfundCore.Services
                 return false;
             }
 
-            var updproject = getProjectById(id);
+            var updproject = context.Set<Project>().SingleOrDefault(p => p.Id == id);
+
             if (updproject == null) {
                 return false;
             }
@@ -99,16 +117,21 @@ namespace CrowdfundCore.Services
             if (options == null) {
                 return null;
             }
+
             var query = context.Set<Project>().AsQueryable();
+            
             if (!string.IsNullOrWhiteSpace(options.Title)) {
                 query = query.Where(t => t.Title == options.Title);
             }
+
             if (!string.IsNullOrWhiteSpace(options.Description)) {
                 query = query.Where(d => d.Description == options.Description);
             }
+
             if (options.Id > 0) {
                 query = query.Where(i => i.Id == options.Id);
             }
+
             return query.Take(10);
         }
     }

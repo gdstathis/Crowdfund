@@ -16,6 +16,9 @@ namespace CrowdfundCore.Services.Options
         /// </summary>
         public string Phone { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public int Id { get; set; }
     }
 }

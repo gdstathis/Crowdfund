@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using CrowdfundCore.Model;
 
 namespace CrowdfundCore.Services.Options
@@ -33,6 +34,7 @@ namespace CrowdfundCore.Services.Options
         /// <summary>
         /// 
         /// </summary>
-      //  public ICollection<Rewards> Rewards { get; set; }
+        [NotMapped]      
+        public ICollection<Rewards> Rewards { get; set; }
     }
 }

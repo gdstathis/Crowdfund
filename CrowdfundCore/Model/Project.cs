@@ -74,6 +74,7 @@ namespace CrowdfundCore
         /// </summary>
         [NotMapped]
         public ICollection<string> Media { get; set; }
+
         public Project()
         {
             DateCreated = DateTime.Today;

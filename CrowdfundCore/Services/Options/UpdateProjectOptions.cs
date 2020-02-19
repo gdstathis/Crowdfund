@@ -18,11 +18,10 @@ namespace CrowdfundCore.Services.Options
         /// 
         /// </summary>
         public decimal Budget { get; set; }
-        //public string nameCreator { get; set; }
         
         /// <summary>
         /// 
         /// </summary>
-      //  public DateTime Deadline { get; set; }
+        public DateTime Deadline { get; set; }
     }
 }

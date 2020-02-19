@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using CrowdfundCore.Services.Options;
+using Microsoft.EntityFrameworkCore;
 
 namespace CrowdfundCore.Services
 {
@@ -14,21 +16,31 @@ namespace CrowdfundCore.Services
             context = ctx ?? throw new ArgumentNullException(nameof(ctx));
         }
 
-        public Backer AddBacker(AddBackerOptions options)
+        public async Task<ApiResult<Backer>> AddBacker(AddBackerOptions options)
         {
             if (options == null) {
-                return null;
+                return new ApiResult<Backer>(
+                    StatusCode.BadRequest, "Null options");
             }
 
             if (options.Donate <= 0.0M) {
-                return null;
+                return new ApiResult<Backer>(
+                    StatusCode.BadRequest, "Invalid Donate");
             }
 
             //Email and phone must me submited for new Backer
             if (string.IsNullOrEmpty(options.Email) || string.IsNullOrEmpty(options.Phone)) {
-                return null;
+                return new ApiResult<Backer>(
+                    StatusCode.BadRequest, "Email and Vatnumber must not be null");
             }
-
+            var exists = SearchBakers(new SearchBackerOptionsOptions()
+            {
+                Email = options.Email
+            }).Any();
+            if (exists) {
+                return new ApiResult<Backer>(
+                    StatusCode.BadRequest, "Already exist Backer with this options");
+            }
             var Backer = new Backer()
             {
                 Donate = options.Donate,            
@@ -40,17 +52,18 @@ namespace CrowdfundCore.Services
             
             if (!string.IsNullOrEmpty(options.Lastname)) { Backer.Lastname = options.Lastname; }
             
-            context.Add(Backer);
+            await context.AddAsync(Backer);
             try {
-                context.SaveChanges();
+                await context.SaveChangesAsync();
                 Console.WriteLine("ok new");
             } catch (Exception ex) {
                 //Console.WriteLine("no new");
-                return null;
+                return new ApiResult<Backer>(
+                    StatusCode.InternalServerError, "Could not save Backer") ;
             }            
-            return Backer;
+            return ApiResult<Backer>.CreateSuccess(Backer); 
         }
-        public bool UpdateBackerOptions(int id, UpdateBackerOptions options)
+        public async Task<bool> UpdateBackerOptions(int id, UpdateBackerOptions options)
         {
             if (id <=0) {
                 return false;
@@ -97,13 +110,21 @@ namespace CrowdfundCore.Services
             return true;
         }
 
-        public Backer GetBackerById(int id)
+        public async Task<ApiResult<Backer>> GetBackerById(int id)
         {
-            if (id <=0) {
-                return null;
+            if (id <= 0) {
+                return new ApiResult<Backer>(
+                        StatusCode.BadRequest, "Null id");
             }
-            var backer = context.Set<Backer>().Find(id);
-            return backer;
+            var backer = await context.Set<Backer>().SingleOrDefaultAsync(s => s.Id == id);
+            if (backer == null) {
+                return new ApiResult<Backer>(
+                        StatusCode.NotFound, "Backer not found"); ;
+            }
+            var api = new ApiResult<Backer>();
+            api.Data = backer;
+            api.ErrorCode = StatusCode.Ok;
+            return api;
         }
 
         public IQueryable<Backer> SearchBakers(

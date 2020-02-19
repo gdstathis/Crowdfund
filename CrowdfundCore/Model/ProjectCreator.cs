@@ -35,6 +35,7 @@ namespace CrowdfundCore
         /// 
         /// </summary>
         public decimal TotalCost { get; set; }
+
         public ProjectCreator()
         {
             Projects = new List<Project>();

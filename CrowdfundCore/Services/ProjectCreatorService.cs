@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using CrowdfundCore.Services.Options;
+using Microsoft.EntityFrameworkCore;
 
 namespace CrowdfundCore.Services
 {
@@ -13,21 +15,28 @@ namespace CrowdfundCore.Services
         {
             context = ctx ?? throw new ArgumentNullException(nameof(ctx));
         }
-        public ProjectCreator AddProjectCreator(AddProjectCreatorOptions options)
+
+        public async Task<ApiResult<ProjectCreator>> AddProjectCreator(AddProjectCreatorOptions options)
         {
             if (options == null) {
-                return null;
+                return new ApiResult<ProjectCreator>(
+                    StatusCode.BadRequest, "Null options");
             }
 
             if (string.IsNullOrEmpty(options.Email) || string.IsNullOrEmpty(options.Phone)) {
-                return null;
+                return new ApiResult<ProjectCreator>(
+                    StatusCode.BadRequest, "Null email or phone");
             }
-            //if (newCreator.user == null) {
-            //    return null;
-            //}
-            //if (newCreator.TotalCost <= 0.0M) {
-            //    return null;
-            //}
+            
+            var exists = SearchProjectCreators(
+                new SearchProjectCreatorOptions() {
+                    Email = options.Email
+                }).Any();
+
+            if (exists) {
+                return new ApiResult<ProjectCreator>(
+                    StatusCode.BadRequest, "Already exist project creator with options");
+            }
 
             var ProjectCreator = new ProjectCreator()
             {
@@ -38,19 +47,21 @@ namespace CrowdfundCore.Services
                 Phone= options.Phone
             };
 
-            context.Add(ProjectCreator);
+            await context.AddAsync(ProjectCreator);
+
             try {
-                context.SaveChanges();
+                await context.SaveChangesAsync();
                 Console.WriteLine("ok new creator");
             } catch (Exception ex) {
                 Console.WriteLine("no new");
-                return null;
+                return new ApiResult<ProjectCreator>(
+                    StatusCode.InternalServerError, "Could not save Project creator in database");
             }
 
-            return ProjectCreator;
+            return ApiResult<ProjectCreator>.CreateSuccess(ProjectCreator);
 
         }
-        public bool UpdateProjectCreator(int id, UpdateProjectCreatorOptions options)
+        public async Task<bool> UpdateProjectCreator(int id, UpdateProjectCreatorOptions options)
         {
             if (id < 0) {
                 return false;
@@ -106,22 +117,33 @@ namespace CrowdfundCore.Services
             if (!string.IsNullOrWhiteSpace(options.Email)) {
                 query = query.Where(e => e.Email == options.Email);
             }
+
             if (!string.IsNullOrWhiteSpace(options.Phone)) {
                 query = query.Where(p => p.Phone == options.Phone);
             }
+
             if (options.Id > 0) {
                 query = query.Where(i => i.Id == options.Id);
             }
+
             return query.Take(10);
         }
 
-        public ProjectCreator GetProjectCreatorById(int id)
+        public async Task<ApiResult<ProjectCreator>> GetProjectCreatorById(int id)
         {
             if (id <= 0) {
-                return null;
+                return new ApiResult<ProjectCreator>(
+                        StatusCode.BadRequest, "Null id");
             }
-            var Creator = context.Set<ProjectCreator>().Find(id);
-            return Creator;
+            var Creator = await context.Set<ProjectCreator>().SingleOrDefaultAsync(s => s.Id == id);
+            if (Creator == null) {
+                return new ApiResult<ProjectCreator>(
+                        StatusCode.NotFound, "Backer not found"); ;
+            }
+            var api = new ApiResult<ProjectCreator>();
+            api.Data = Creator;
+            api.ErrorCode = StatusCode.Ok;
+            return api;
         }
 
 
