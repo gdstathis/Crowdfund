@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Crowdfund\CrowdfundCore\CrowdfundCore.csproj" />
+    <ProjectReference Include="..\CrowdfundCore\CrowdfundCore.csproj" />
   </ItemGroup>
 
 </Project>
