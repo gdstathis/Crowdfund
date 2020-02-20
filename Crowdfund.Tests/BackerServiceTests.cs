@@ -6,6 +6,8 @@ using CrowdfundCore.Services;
 using Autofac;
 using CrowdfundCore.Services.Options;
 using CrowdfundCore.Data;
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace Crowdfund.Tests
 {
@@ -22,34 +24,30 @@ namespace Crowdfund.Tests
         }
 
         [Fact]
-        public void AddBacker_Success()
+        public async Task  AddBacker_Success()
         {
             var options = new AddBackerOptions()
             {
-                Firstname = "54654444654",
-                Lastname = "5465444454",
-                Email = "ge54546s444dfsdfs1df",
-                Phone = "5454664544455546154",
+                Firstname = "eva",
+                Lastname = "zisouli",
+                Email = "evage@gamial.com",
+                Phone = "6973970909",
                 Donate = 150
             };
-
-            //bcsv_.AddBacker(new AddBackerOptions()
-            //{
-            //    Email = "fdsfsd",
-            //    Firstname = "dfsfsd",
-            //    Lastname = "dsfdsfsdf",
-            //    Phone = "sdfdsfsdfsdfsd"
-            //    ,Donate=5
-            //});
-
-            var result = bcsv_.AddBacker(options);
-
+            var result = await bcsv_.AddBacker(options);
+            
             Assert.NotNull(result);
 
+            var backer = bcsv_.SearchBakers(new SearchBackerOptionsOptions()
+            {
+                Email = options.Email
+            }).SingleOrDefault();
+
+            Assert.NotNull(backer);
         }
 
         [Fact]
-        public void UpdateBacker_Success()
+        public async Task UpdateBacker_Success()
         {
             var options = new UpdateBackerOptions()
             {
@@ -58,7 +56,7 @@ namespace Crowdfund.Tests
                 Email = "afafadfsdfsd",
                 Phone = "fsdfsdfsdfwef3"
             };
-            var success = bcsv_.UpdateBackerOptions(1, options);
+            var success =await bcsv_.UpdateBackerOptions(1, options);
             Assert.True(success);
         }
     }

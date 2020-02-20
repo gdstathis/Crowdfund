@@ -36,8 +36,8 @@ namespace CrowdfundCore
         /// </summary>
         public decimal Donate { get; set; }
 
-        [NotMapped]
-        public ICollection<Rewards> Rewards { get; set; }
+        //[NotMapped]
+        //public ICollection<Rewards> Rewards { get; set; }
 
         /// <summary>
         /// 

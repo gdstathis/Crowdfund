@@ -23,7 +23,7 @@ namespace CrowdfundCore.Services
                     StatusCode.BadRequest, "Null options");
             }
 
-            if (options.Donate <= 0.0M) {
+            if (options.Donate < 0.0M) {
                 return new ApiResult<Backer>(
                     StatusCode.BadRequest, "Invalid Donate");
             }
@@ -45,7 +45,10 @@ namespace CrowdfundCore.Services
             {
                 Donate = options.Donate,            
                 Email=options.Email,
-                Phone=options.Phone
+                Phone=options.Phone,
+                //Firstname=options.Firstname,
+                //Lastname=options.Lastname
+                
             };
 
             if (!string.IsNullOrEmpty(options.Firstname)) { Backer.Firstname = options.Firstname; }
@@ -71,7 +74,7 @@ namespace CrowdfundCore.Services
             if (options == null) {
                 return false;
             }
-            var Backer = context.Set<Backer>().SingleOrDefault(p=>p.Id==id);
+            var Backer = await  context.Set<Backer>().SingleOrDefaultAsync(p=>p.Id==id);
            
             if (Backer == null) {
                 Console.WriteLine("Does not exist baker with this id");
@@ -94,13 +97,13 @@ namespace CrowdfundCore.Services
                 Backer.Email = options.Email;
             }
 
-            if (options.NewDonate <= 0) {
+            if (options.NewDonate < 0) {
                 Backer.Donate = options.NewDonate;
             }
 
             context.Update(Backer);
             try {
-                context.SaveChanges();
+               await context.SaveChangesAsync();
                 Console.WriteLine("Update ok");
             } catch (Exception ex) {
                 Console.WriteLine("UPDATE FAIL"+ex);

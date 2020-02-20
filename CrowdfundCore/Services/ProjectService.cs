@@ -9,7 +9,7 @@ namespace CrowdfundCore.Services
 {
     public class ProjectService :IProjectService
     {
-        private readonly CrowdfundCore.Data.CrowdfundDbContext context;
+        private readonly Data.CrowdfundDbContext context;
         
         public ProjectService(Data.CrowdfundDbContext ctx)
         {
@@ -33,7 +33,7 @@ namespace CrowdfundCore.Services
                     StatusCode.BadRequest, "Null description");
             }
 
-            if (options.Budget<=0) {
+            if (options.Budget < 0) {
                 return new ApiResult<Project>(
                     StatusCode.BadRequest, "Invalid project budget");
             }
@@ -47,7 +47,8 @@ namespace CrowdfundCore.Services
             {
                 budget = options.Budget,
                 Description = options.Description,
-                Title = options.Title,    
+                Title = options.Title,
+                Creator = options.Creator
             };
 
             await context.AddAsync(newProject);
@@ -84,7 +85,7 @@ namespace CrowdfundCore.Services
 
         public async Task<bool> UpdateProject(int id, UpdateProjectOptions options)
         {
-            if (id<0) {
+            if (id < 0) {
                 return false;
             }
 
@@ -92,7 +93,7 @@ namespace CrowdfundCore.Services
                 return false;
             }
 
-            var updproject = context.Set<Project>().SingleOrDefault(p => p.Id == id);
+            var updproject = await context.Set<Project>().SingleOrDefaultAsync(p => p.Id == id);
 
             if (updproject == null) {
                 return false;
@@ -101,13 +102,25 @@ namespace CrowdfundCore.Services
             if (updproject.Description != null) {
                 updproject.Description = options.Description;
             }
+            
+            if( updproject.budget > 0){
+                updproject.budget = options.Budget;
+            }
 
             if (updproject.Title != null) {
                 updproject.Title = options.Title;
             }
 
             context.Update(updproject);
-            
+            try
+            {
+                await context.SaveChangesAsync();
+                Console.WriteLine("Update ok");
+            } catch (Exception ex)
+            {
+                Console.WriteLine("UPDATE FAIL" + ex);
+                return false;
+            }
             return true;
         }
 
