@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using CrowdfundCore.Model;
 
 namespace CrowdfundCore.Services.Options
@@ -29,6 +30,8 @@ namespace CrowdfundCore.Services.Options
         /// 
         /// </summary>
         public DateTime Deadline { get; set; }
+
+        public ICollection<Rewards> Rewards { get;set; }
 
     }
 }

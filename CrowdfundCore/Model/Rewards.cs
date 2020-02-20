@@ -2,10 +2,11 @@
 {
     public class Rewards
     {
+        public int id { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public string Title { get; set; }
+        public string Amount { get; set; }
 
         /// <summary>
         /// 
@@ -15,6 +16,8 @@
         /// <summary>
         /// 
         /// </summary>
-        public decimal RewardDiscount { get; set; }
+        //public decimal RewardDiscount { get; set; }
+        public Project project { get; set; }
+
     }
 }
