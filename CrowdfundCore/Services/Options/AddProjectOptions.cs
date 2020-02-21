@@ -25,6 +25,16 @@ namespace CrowdfundCore.Services.Options
         /// 
         /// </summary>
         public ProjectCreator Creator { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Photo { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Video { get; set; }
       
         /// <summary>
         /// 

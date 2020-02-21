@@ -48,9 +48,13 @@ namespace CrowdfundCore.Services
                 budget = options.Budget,
                 Description = options.Description,
                 Title = options.Title,
-                Creator = options.Creator
+                Creator = options.Creator,
+                photo = options.Photo,
+                video = options.Video,
+                rewardPackages = options.Rewards,
+                
             };
-
+           
             await context.AddAsync(newProject);
 
             try {
@@ -109,6 +113,14 @@ namespace CrowdfundCore.Services
 
             if (updproject.Title != null) {
                 updproject.Title = options.Title;
+            }
+
+            if (updproject.photo != null) {
+                updproject.photo = options.Photo;
+            }
+
+            if (updproject.video != null) {
+                updproject.video = options.Video;
             }
 
             context.Update(updproject);

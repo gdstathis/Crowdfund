@@ -23,5 +23,15 @@ namespace CrowdfundCore.Services.Options
         /// 
         /// </summary>
         public DateTime Deadline { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Photo { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Video { get; set; }
     }
 }

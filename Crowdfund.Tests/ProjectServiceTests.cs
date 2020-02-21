@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Autofac;
 using CrowdfundCore;
 using CrowdfundCore.Data;
+using CrowdfundCore.Model;
 using CrowdfundCore.Services;
 using CrowdfundCore.Services.Options;
 using Xunit;
@@ -28,13 +29,18 @@ namespace Crowdfund.Tests
                 Email="SDfsd",
                 Phone="dsfsdfds"
             };
+          
             var options = new AddProjectOptions()
             {
-                Title = "SAds222ad",
-                Description = "sd1111asdasd",
+                Title = "SAds2222ad",
+                Description = "sd12111asdasd",
                 Budget = 456,
-                Creator=creator
+                Creator=creator,
+                Photo="A photo",
+                Video="A video",
+               
             };
+            
             var result = await prsv_.CreateProject(options);
             Assert.NotNull(result);
         }

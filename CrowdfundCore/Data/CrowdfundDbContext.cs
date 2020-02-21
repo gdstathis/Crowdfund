@@ -47,6 +47,12 @@ namespace CrowdfundCore.Data
             modelBuilder
                 .Entity<ProjectBacker>()
                 .ToTable("ProjectBacker");
+            modelBuilder.
+                Entity<Status>().
+                ToTable("Status");
+            modelBuilder.
+                Entity<Rewards>().
+                ToTable("Rewards");
 
             modelBuilder
                 .Entity<ProjectBacker>()

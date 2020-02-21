@@ -43,9 +43,15 @@ namespace CrowdfundCore
                 .As<IBackerService>();
 
             builder
+                .RegisterType<RewardsService>()
+                .InstancePerLifetimeScope()
+                .As<IRewardsService>();
+
+            builder
                 .RegisterType<Data.CrowdfundDbContext>()
                 .InstancePerLifetimeScope()
                 .AsSelf();
+
             //builder
             //    .RegisterType<ProjectService>()
             //    .InstancePerLifetimeScope()

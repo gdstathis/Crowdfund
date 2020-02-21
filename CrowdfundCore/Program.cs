@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using CrowdfundCore.Data;
 using CrowdfundCore.Model;
 using CrowdfundCore.Services;
+using CrowdfundCore.Services.Options;
 
 namespace CrowdfundCore
 {
@@ -15,15 +16,10 @@ namespace CrowdfundCore
             
             var BackerService = new BackerService(context);
             var ProjectService = new ProjectService(context);
+            var RewardService = new RewardsService(context);
+            
+        }
 
-            await BackerService.AddBacker(new Services.Options.AddBackerOptions
-            {
-                Firstname = "Georgios",
-                Lastname = "Stathis",
-                Donate = 2800,
-                Email = "gg4@gmail.com",
-                Phone = "695312449213"
-            });
             //BackerService.UpdateBackerOptions(1,new Services.Options.UpdateBackerOptions
             //{
             //    Firstname = "evaaa",
@@ -79,4 +75,3 @@ namespace CrowdfundCore
 
         }
     }
-}

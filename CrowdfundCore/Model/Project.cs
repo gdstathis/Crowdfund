@@ -45,7 +45,7 @@ namespace CrowdfundCore
         /// <summary>
         /// 
         /// </summary>
-        public ProjectStatus Status { get; set; }
+      //  public ProjectStatus Status { get; set; }
 
         /// <summary>
         /// 
@@ -61,8 +61,8 @@ namespace CrowdfundCore
         /// <summary>
         /// 
         /// </summary>
-        [NotMapped]
-        public ICollection<string> Comments { get; set; }
+        
+        public ICollection<Status> Status { get; set; }
 
         /// <summary>
         /// 
@@ -72,15 +72,19 @@ namespace CrowdfundCore
         /// <summary>
         /// 
         /// </summary>
-        [NotMapped]
-        public ICollection<string> Media { get; set; }
+        //[NotMapped]
+        public string photo { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string video { get; set; }
 
         public Project()
         {
             DateCreated = DateTime.Today;
             Deadline = DateTime.Today.AddDays(25);
-            Comments = new List<string>();
-            Media = new List<string>();
+            Status = new List<Status>();
             rewardPackages = new List<Rewards>();
         }
     }

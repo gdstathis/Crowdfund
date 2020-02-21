@@ -6,7 +6,7 @@
         /// <summary>
         /// 
         /// </summary>
-        public string Amount { get; set; }
+        public decimal Amount { get; set; }
 
         /// <summary>
         /// 
