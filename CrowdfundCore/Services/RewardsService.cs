@@ -46,7 +46,7 @@ namespace CrowdfundCore.Services
             {
                 Amount = options.Amount,
                 Description = options.Description,
-                id = options.projectId
+               
 
             };
 
