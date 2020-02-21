@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CrowdfundCore.Model;
@@ -15,6 +16,7 @@ namespace CrowdfundCore.Services
         public RewardsService(Data.CrowdfundDbContext ctx)
         {
             context = ctx ?? throw new ArgumentNullException(nameof(ctx));
+          
         }
 
         public async Task<ApiResult<Rewards>> CreateRewards(AddRewardsOptions options)
@@ -61,6 +63,18 @@ namespace CrowdfundCore.Services
             }
 
             return ApiResult<Rewards>.CreateSuccess(reward);
+        }
+        public Rewards SearchRewardById(int id)
+        {
+            if (id <= 0)
+            {
+                return null;
+            }
+            return  context
+                .Set<Rewards>()
+                .SingleOrDefault(s => s.project.Id == id);
+                
+
         }
 
     }

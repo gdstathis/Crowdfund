@@ -41,10 +41,10 @@ namespace CrowdfundTests
             var options = new UpdateProjectCreatorOptions()
             {
                 Email = "evazisouli@gmail.com",
-                TotalCost = 178,
-                Firstname = "evangelia",
-                Lastname = "zisoula",
-                Phone = "6973977909"
+                TotalCost = 789,
+                Firstname = "george",
+                Lastname = "zla",
+                Phone = "6909"
             };
             var result = await pcsv_.UpdateProjectCreator(1, options);
             Assert.NotNull(options);

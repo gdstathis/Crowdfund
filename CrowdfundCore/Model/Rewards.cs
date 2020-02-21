@@ -16,8 +16,7 @@
         /// <summary>
         /// 
         /// </summary>
-        //public decimal RewardDiscount { get; set; }
-        public Project project { get; set; }
+       public Project project { get; set; }
 
     }
 }

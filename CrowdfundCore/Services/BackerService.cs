@@ -33,7 +33,7 @@ namespace CrowdfundCore.Services
                 return new ApiResult<Backer>(
                     StatusCode.BadRequest, "Email and Vatnumber must not be null");
             }
-            var exists = SearchBakers(new SearchBackerOptionsOptions()
+            var exists = SearchBackers(new SearchBackerOptionsOptions()
             {
                 Email = options.Email
             }).Any();
@@ -130,7 +130,7 @@ namespace CrowdfundCore.Services
             return api;
         }
 
-        public IQueryable<Backer> SearchBakers(
+        public IQueryable<Backer> SearchBackers(
             SearchBackerOptionsOptions options)
         {
             if (options == null) {

@@ -45,17 +45,11 @@ namespace CrowdfundCore
         /// <summary>
         /// 
         /// </summary>
-      //  public ProjectStatus Status { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         public ICollection<ProjectBacker> Backers { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        [NotMapped]
         public ICollection<Rewards> rewardPackages { get; set; }
 
         /// <summary>
@@ -72,7 +66,6 @@ namespace CrowdfundCore
         /// <summary>
         /// 
         /// </summary>
-        //[NotMapped]
         public string photo { get; set; }
 
         /// <summary>

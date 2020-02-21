@@ -95,6 +95,11 @@ namespace CrowdfundCore.Services
                 UpdProjectCreator.Phone = options.Phone;
             }
 
+            if (UpdProjectCreator.TotalCost > 0)
+            {
+                UpdProjectCreator.TotalCost = options.TotalCost;
+            }
+
             context.Update(UpdProjectCreator);
             try {
                 context.SaveChanges();

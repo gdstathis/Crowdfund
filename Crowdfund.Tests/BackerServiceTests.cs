@@ -38,7 +38,7 @@ namespace Crowdfund.Tests
             
             Assert.NotNull(result);
 
-            var backer = bcsv_.SearchBakers(new SearchBackerOptionsOptions()
+            var backer = bcsv_.SearchBackers(new SearchBackerOptionsOptions()
             {
                 Email = options.Email
             }).SingleOrDefault();
