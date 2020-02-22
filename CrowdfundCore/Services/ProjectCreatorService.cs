@@ -41,7 +41,7 @@ namespace CrowdfundCore.Services
             var ProjectCreator = new ProjectCreator()
             {
                 Email= options.Email,
-                TotalCost = options.TotalCost,
+                //TotalCost = options.TotalCost,
                 Firstname= options.Firstname,
                 Lastname=options.Lastname,
                 Phone= options.Phone

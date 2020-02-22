@@ -27,7 +27,7 @@ namespace CrowdfundTests
             var options = new AddProjectCreatorOptions()
             {
                 Email = "evazisouli@gmail.com",
-                TotalCost = 156,
+                //TotalCost = 156,
                 Firstname = "eva",
                 Lastname = "zisouli",
                 Phone = "6973970909",

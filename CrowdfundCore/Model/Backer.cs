@@ -42,7 +42,10 @@ namespace CrowdfundCore
         /// <summary>
         /// 
         /// </summary>
-        [NotMapped]
         public ICollection<Project> Backers_project { get; set; }
+        public Backer()
+        {
+            Backers_project = new List<Project>();
+        }
     }
 }

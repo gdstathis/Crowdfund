@@ -1,11 +1,12 @@
 using System;
+using CrowdfundCore.Services.Options;
 
 namespace Crowdfund.Web.Models
 {
-    public class ErrorViewModel
+    public class CreateProjectViewModel
     {
-        public string RequestId { get; set; }
+        public AddProjectOptions CreateProjectOptions { get; set; }
+        public string ErrorText { get; set; }
 
-        public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
     }
 }

@@ -29,12 +29,7 @@ namespace CrowdfundCore.Services.Options
         /// <summary>
         /// 
         /// </summary>
-        public decimal TotalCost { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [NotMapped]      
-        public ICollection<Rewards> Rewards { get; set; }
+        //    [NotMapped]      
+        //    public ICollection<Rewards> Rewards { get; set; }
     }
 }

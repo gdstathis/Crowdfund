@@ -1,0 +1,34 @@
+﻿@model Crowdfund.Web.Models.CreateProjectCreatorViewModel;
+
+<form method="post" action="@Url.Action("create", "projectCreator")">
+
+    <div class="form-group">
+        <label for="@Html.IdFor(c => c.AddProjectCreatorOptions.Firstname)">Firstname</label>
+        @Html.TextBoxFor(c => c.AddProjectCreatorOptions.Lastname, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label for="@Html.IdFor(c => c.AddProjectCreatorOptions.Lastname)">Lastname</label>
+        @Html.TextBoxFor(c => c.AddProjectCreatorOptions.Email, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label for="@Html.IdFor(c => c.AddProjectCreatorOptions.Email)">Email</label>
+        @Html.TextBoxFor(c => c.AddProjectCreatorOptions.Email, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label for="@Html.IdFor(c => c.AddProjectCreatorOptions.Phone)">Phone</label>
+        @Html.TextBoxFor(c => c.AddProjectCreatorOptions.Phone, new { @class = "form-control" })
+        <small id="emailHelp" class="form-text text-muted">
+            Insert Valid Email
+        </small>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+    @if (!string.IsNullOrWhiteSpace(Model?.ErrorText)) {
+        <div class="alert alert-danger" role="alert">
+            @Model?.ErrorText
+        </div>
+    }
+</form>
