@@ -6,11 +6,11 @@ namespace CrowdfundCore.Services
 {
     public interface IBackerService
     {
-        Task<ApiResult<Backer>> AddBacker(AddBackerOptions options);
+        Task<ApiResult<Backer>> AddBackerAsync(AddBackerOptions options);
 
-        Task<bool> UpdateBackerOptions(int id, UpdateBackerOptions options);
+        Task<bool> UpdateBackerOptionsAsync(int id, UpdateBackerOptions options);
 
-        IQueryable<Backer> SearchBackers(SearchBackerOptionsOptions options);
+        IQueryable<Backer> SearchBackersAsync(SearchBackerOptionsOptions options);
     }
 }
 

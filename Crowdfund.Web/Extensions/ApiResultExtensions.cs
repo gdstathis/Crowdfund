@@ -1,7 +1,7 @@
 ﻿using CrowdfundCore;
 using Microsoft.AspNetCore.Mvc;
 
-namespace TinyCrm.Web.Extensions
+namespace Crowdfund.Web.Extensions
 {
     public static class ApiResultExtensions
     {

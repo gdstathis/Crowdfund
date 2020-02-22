@@ -36,7 +36,7 @@ namespace Crowdfund.Web.Controllers
         public async Task<IActionResult> CreateBacker(
                   Models.CreateProjectViewModel model)
         {
-            var result = await project_.CreateProject(
+            var result = await project_.CreateProjectAsync(
                 model?.CreateProjectOptions);
             if (result == null) {
                 model.ErrorText = "Oops. Something went wrong";

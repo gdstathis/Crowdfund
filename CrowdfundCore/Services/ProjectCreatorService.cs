@@ -16,7 +16,7 @@ namespace CrowdfundCore.Services
             context = ctx ?? throw new ArgumentNullException(nameof(ctx));
         }
 
-        public async Task<ApiResult<ProjectCreator>> AddProjectCreator(AddProjectCreatorOptions options)
+        public async Task<ApiResult<ProjectCreator>> AddProjectCreatorAsync(AddProjectCreatorOptions options)
         {
             if (options == null) {
                 return new ApiResult<ProjectCreator>(
@@ -28,7 +28,7 @@ namespace CrowdfundCore.Services
                     StatusCode.BadRequest, "Null email or phone");
             }
             
-            var exists = SearchProjectCreators(
+            var exists = SearchProjectCreatorsAsync(
                 new SearchProjectCreatorOptions() {
                     Email = options.Email
                 }).Any();
@@ -61,7 +61,7 @@ namespace CrowdfundCore.Services
             return ApiResult<ProjectCreator>.CreateSuccess(ProjectCreator);
 
         }
-        public async Task<bool> UpdateProjectCreator(int id, UpdateProjectCreatorOptions options)
+        public async Task<bool> UpdateProjectCreatorAsync(int id, UpdateProjectCreatorOptions options)
         {
             if (id < 0) {
                 return false;
@@ -102,7 +102,7 @@ namespace CrowdfundCore.Services
 
             context.Update(UpdProjectCreator);
             try {
-                context.SaveChanges();
+                await context.SaveChangesAsync();
                 Console.WriteLine("Update creator ok");
             } catch (Exception ex) {
                 Console.WriteLine("UPDATE CREATOR FAIL" + ex);
@@ -112,7 +112,7 @@ namespace CrowdfundCore.Services
 
         }
 
-        public IQueryable<ProjectCreator> SearchProjectCreators(
+        public IQueryable<ProjectCreator> SearchProjectCreatorsAsync(
             SearchProjectCreatorOptions options)
         {
             if (options == null) {
@@ -134,7 +134,7 @@ namespace CrowdfundCore.Services
             return query.Take(10);
         }
 
-        public async Task<ApiResult<ProjectCreator>> GetProjectCreatorById(int id)
+        public async Task<ApiResult<ProjectCreator>> GetProjectCreatorByIdAsync(int id)
         {
             if (id <= 0) {
                 return new ApiResult<ProjectCreator>(

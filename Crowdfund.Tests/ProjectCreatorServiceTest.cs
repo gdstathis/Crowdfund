@@ -32,7 +32,7 @@ namespace CrowdfundTests
                 Lastname = "zisouli",
                 Phone = "6973970909",
             };
-            var result = await pcsv_.AddProjectCreator(options);
+            var result = await pcsv_.AddProjectCreatorAsync(options);
             Assert.Equal(StatusCode.Ok, result.ErrorCode);
             Assert.NotNull(result);
         }
@@ -47,7 +47,7 @@ namespace CrowdfundTests
                 Lastname = "zla",
                 Phone = "6909"
             };
-            var result = await pcsv_.UpdateProjectCreator(1, options);
+            var result = await pcsv_.UpdateProjectCreatorAsync(1, options);
             Assert.NotNull(options);
             //var projectcreator = pcsv_.SearchProjectCreators(
             //   new SearchProjectCreatorOptions()

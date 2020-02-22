@@ -16,7 +16,7 @@ namespace CrowdfundCore.Services
             context = ctx ?? throw new ArgumentNullException(nameof(ctx));
         }
 
-        public async Task<ApiResult<Backer>> AddBacker(AddBackerOptions options)
+        public async Task<ApiResult<Backer>> AddBackerAsync(AddBackerOptions options)
         {
             if (options == null) {
                 return new ApiResult<Backer>(
@@ -33,7 +33,7 @@ namespace CrowdfundCore.Services
                 return new ApiResult<Backer>(
                     StatusCode.BadRequest, "Email and Vatnumber must not be null");
             }
-            var exists = SearchBackers(new SearchBackerOptionsOptions()
+            var exists = SearchBackersAsync(new SearchBackerOptionsOptions()
             {
                 Email = options.Email
             }).Any();
@@ -66,7 +66,7 @@ namespace CrowdfundCore.Services
             }            
             return ApiResult<Backer>.CreateSuccess(Backer); 
         }
-        public async Task<bool> UpdateBackerOptions(int id, UpdateBackerOptions options)
+        public async Task<bool> UpdateBackerOptionsAsync(int id, UpdateBackerOptions options)
         {
             if (id <=0) {
                 return false;
@@ -113,7 +113,7 @@ namespace CrowdfundCore.Services
             return true;
         }
 
-        public async Task<ApiResult<Backer>> GetBackerById(int id)
+        public async Task<ApiResult<Backer>> GetBackerByIdAsync(int id)
         {
             if (id <= 0) {
                 return new ApiResult<Backer>(
@@ -130,7 +130,7 @@ namespace CrowdfundCore.Services
             return api;
         }
 
-        public IQueryable<Backer> SearchBackers(
+        public IQueryable<Backer> SearchBackersAsync(
             SearchBackerOptionsOptions options)
         {
             if (options == null) {

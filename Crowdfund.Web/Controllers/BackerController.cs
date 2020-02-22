@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Autofac;
+using Autofac.Core;
+using Crowdfund.Web.Extensions;
 using CrowdfundCore;
+
 using CrowdfundCore.Data;
 using CrowdfundCore.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -12,16 +15,15 @@ namespace Crowdfund.Web.Controllers
 {
     public class BackerController : Controller
     {
-       // private IContainer Container { get; set; }
+        private IContainer Container { get; set; }
         private CrowdfundDbContext context_;
-        private CrowdfundCore.Services.IBackerService backers_;
+        private IBackerService backers_;
 
-        public BackerController(CrowdfundDbContext context, IBackerService backers)
+        public BackerController(IBackerService backers)
         {
-            //Container = ServiceRegistrator.GetContainer();
-            context = context_;
-
-            backers = backers_;
+             Container = ServiceRegistrator.GetContainer();
+             context_ = Container.Resolve<CrowdfundDbContext>();
+            backers_ = backers;
         }
 
         public IActionResult Index()
@@ -37,16 +39,12 @@ namespace Crowdfund.Web.Controllers
 
         [HttpPost]
         public async Task<IActionResult> CreateBacker(
-                  Models.CreateBackerViewModel model)
+              [FromBody]   CrowdfundCore.Services.Options.AddBackerOptions options)
         {
-            var result = await backers_.AddBacker(
-                model?.AddBackerOptions); 
-            if (result == null)
-            {
-                model.ErrorText = "Oops. Something went wrong"; 
-                return View(model);
-            }
-            return Ok();
+            var result = await backers_.AddBackerAsync(
+                options); 
+           
+            return result.AsStatusResult();
 
 
         }

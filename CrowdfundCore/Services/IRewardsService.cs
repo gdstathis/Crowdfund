@@ -9,6 +9,6 @@ namespace CrowdfundCore.Services
 {
     public interface IRewardsService
     {
-        Task<ApiResult<Rewards>> CreateRewards(AddRewardsOptions options);
+        Task<ApiResult<Rewards>> CreateRewardsAsync(AddRewardsOptions options);
     }
 }

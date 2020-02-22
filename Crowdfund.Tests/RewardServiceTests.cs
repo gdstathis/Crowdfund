@@ -38,7 +38,7 @@ namespace Crowdfund.Tests
                 Description = "N2EW REWARD",
                 project=project,
             };
-            var result = await rwsv_.CreateRewards(reward);
+            var result = await rwsv_.CreateRewardsAsync(reward);
             Assert.NotNull(result);
             Assert.Equal(StatusCode.Ok, result.ErrorCode);
         }

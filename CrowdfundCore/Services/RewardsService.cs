@@ -19,7 +19,7 @@ namespace CrowdfundCore.Services
           
         }
 
-        public async Task<ApiResult<Rewards>> CreateRewards(AddRewardsOptions options)
+        public async Task<ApiResult<Rewards>> CreateRewardsAsync(AddRewardsOptions options)
         {
             if (options == null) {
                 return new ApiResult<Rewards>(
@@ -73,12 +73,9 @@ namespace CrowdfundCore.Services
             return  context
                 .Set<Rewards>()
                 .SingleOrDefault(s => s.project.Id == id);
-                
-
         }
-
     }
-    }
+}
 
 
 

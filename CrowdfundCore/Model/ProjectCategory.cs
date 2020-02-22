@@ -2,6 +2,9 @@
 {
     public enum ProjectCategory
     {
+        /// <summary>
+        /// Project categories
+        /// </summary>
         Invalid = 0,
         Arts = 1,
         Design = 2,
