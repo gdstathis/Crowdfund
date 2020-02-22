@@ -36,20 +36,20 @@ namespace CrowdfundCore.Services
                     StatusCode.BadRequest, "Invalid reward amount");
             }
 
-            if (options.projectId < 0) {
-                return new ApiResult<Rewards>(
-                    StatusCode.BadRequest, "Invalid projectId");
-            }
+            //if (options.projectId < 0) {
+            //    return new ApiResult<Rewards>(
+            //        StatusCode.BadRequest, "Invalid projectId");
+            //}
             
            
             var reward = new Rewards()
             {
                 Amount = options.Amount,
                 Description = options.Description,
-               
-
+                project=options.project
+                
             };
-
+            
             await context.AddAsync(reward);
 
             try {

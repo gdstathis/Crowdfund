@@ -12,15 +12,16 @@ namespace Crowdfund.Web.Controllers
 {
     public class BackerController : Controller
     {
-        private IContainer Container { get; set; }
+       // private IContainer Container { get; set; }
         private CrowdfundDbContext context_;
         private CrowdfundCore.Services.IBackerService backers_;
 
-        public BackerController()
+        public BackerController(CrowdfundDbContext context, IBackerService backers)
         {
-            Container = ServiceRegistrator.GetContainer();
-            context_ = Container.Resolve<CrowdfundDbContext>();
-            backers_ = Container.Resolve<IBackerService>();
+            //Container = ServiceRegistrator.GetContainer();
+            context = context_;
+
+            backers = backers_;
         }
 
         public IActionResult Index()

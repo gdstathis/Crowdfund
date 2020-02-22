@@ -119,6 +119,9 @@ namespace CrowdfundCore.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("BackerId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("CreatorId")
                         .HasColumnType("int");
 
@@ -147,6 +150,8 @@ namespace CrowdfundCore.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BackerId");
 
                     b.HasIndex("CreatorId");
 
@@ -203,7 +208,7 @@ namespace CrowdfundCore.Migrations
             modelBuilder.Entity("CrowdfundCore.Model.Rewards", b =>
                 {
                     b.HasOne("CrowdfundCore.Project", "project")
-                        .WithMany()
+                        .WithMany("rewardPackages")
                         .HasForeignKey("projectId");
                 });
 
@@ -218,6 +223,10 @@ namespace CrowdfundCore.Migrations
 
             modelBuilder.Entity("CrowdfundCore.Project", b =>
                 {
+                    b.HasOne("CrowdfundCore.Backer", null)
+                        .WithMany("Backers_project")
+                        .HasForeignKey("BackerId");
+
                     b.HasOne("CrowdfundCore.ProjectCreator", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatorId");

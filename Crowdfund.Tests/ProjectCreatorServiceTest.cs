@@ -33,6 +33,7 @@ namespace CrowdfundTests
                 Phone = "6973970909",
             };
             var result = await pcsv_.AddProjectCreator(options);
+            Assert.Equal(StatusCode.Ok, result.ErrorCode);
             Assert.NotNull(result);
         }
         [Fact]

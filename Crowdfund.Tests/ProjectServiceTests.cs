@@ -42,6 +42,8 @@ namespace Crowdfund.Tests
             };
             
             var result = await prsv_.CreateProject(options);
+            Assert.Equal(StatusCode.Ok, result.ErrorCode);
+
             Assert.NotNull(result);
         }
         [Fact]

@@ -9,6 +9,8 @@ using CrowdfundCore.Services;
 using CrowdfundCore.Services.Options;
 using Xunit;
 using Autofac;
+using CrowdfundCore;
+
 namespace Crowdfund.Tests
 {
     public partial class RewardServiceTests : IClassFixture<CrowdfundFixture>
@@ -24,15 +26,21 @@ namespace Crowdfund.Tests
         [Fact]
         public async Task AddReward_Success()
         {
-
+            var project = new Project()
+            {
+                Title = "sdaqsad",
+                Id = 1,
+                Description = "Sdasd"
+            };
             var reward = new AddRewardsOptions()
             {
                 Amount = 150.00M,
-                Description = "NEW REWARD",
-                projectId=1
+                Description = "N2EW REWARD",
+                project=project,
             };
             var result = await rwsv_.CreateRewards(reward);
             Assert.NotNull(result);
+            Assert.Equal(StatusCode.Ok, result.ErrorCode);
         }
     }
 }
