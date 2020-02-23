@@ -15,14 +15,14 @@ namespace Crowdfund.Web.Controllers
 {
     public class BackerController : Controller
     {
-        //private IContainer Container { get; set; }
-        //private CrowdfundDbContext context_;
+        private IContainer Container { get; set; }
+        private CrowdfundDbContext context_;
         private IBackerService backers_;
 
         public BackerController(IBackerService backers)
         {
-            // Container = ServiceRegistrator.GetContainer();
-            // context_ = Container.Resolve<CrowdfundDbContext>();
+             Container = ServiceRegistrator.GetContainer();
+             context_ = Container.Resolve<CrowdfundDbContext>();
             backers_ = backers;
         }
 
@@ -37,7 +37,7 @@ namespace Crowdfund.Web.Controllers
             return View();
         }
 
-        
+      [HttpPost]  
         public async Task<IActionResult> CreateBacker(
               [FromBody]   Models.CreateBackerViewModel model)
         {
