@@ -1,0 +1,18 @@
+﻿@model Crowdfund.Web.Models.CreateStatusViewModel;
+
+    <form method="post" action="@Url.Action("create", "status")">
+
+        <div class="form-group">
+            <label for="@Html.IdFor(c => c.AddStatusOptions.comments)">Comment</label>
+            @Html.TextBoxFor(c => c.AddStatusOptions.comments, new { @class = "form-control" })
+        </div>
+
+     
+        <button type="submit" class="btn btn-primary js-submit-backer" >Submit</button>
+
+    </form>
+  
+</div>
+
+
+    

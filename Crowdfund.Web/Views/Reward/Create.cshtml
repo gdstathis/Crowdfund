@@ -1,0 +1,23 @@
+﻿@model Crowdfund.Web.Models.CreateRewardViewModel;
+
+    <form method="post" action="@Url.Action("create", "reward")">
+
+        <div class="form-group">
+            <label for="@Html.IdFor(c => c.AddRewardsOptions.Description)">Description</label>
+            @Html.TextBoxFor(c => c.AddRewardsOptions.Description, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <label for="@Html.IdFor(c => c.AddRewardsOptions.Amount)">Amount</label>
+            @Html.TextBoxFor(c => c.AddRewardsOptions.Amount, new { @class = "form-control" })
+        </div>
+
+      
+        <button type="submit" class="btn btn-primary js-submit-backer" >Submit</button>
+
+    </form>
+
+</div>
+
+
+    

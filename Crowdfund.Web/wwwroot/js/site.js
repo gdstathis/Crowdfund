@@ -3,6 +3,10 @@
 
 // Write your JavaScript code.
 
+// Tooltips Initialization
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
 //VALIDATION GIA TO EMAIL TOU BACKER
 function validateEmail(email) {
 
