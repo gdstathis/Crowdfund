@@ -36,9 +36,9 @@ namespace Crowdfund.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateProjectCreator(
+        public async Task<IActionResult> Create(
                   Models.CreateProjectCreatorViewModel model)
-        {
+        {            
             var result = await creators_.AddProjectCreatorAsync(
                 model?.AddProjectCreatorOptions);
             if (result == null) {

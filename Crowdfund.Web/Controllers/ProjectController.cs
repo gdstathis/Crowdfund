@@ -32,8 +32,8 @@ namespace Crowdfund.Web.Controllers
         {
             return View();
         }
-        [HttpGet]
-        public async Task<IActionResult> CreateBacker(
+        [HttpPost]
+        public async Task<IActionResult> Create(
                   Models.CreateProjectViewModel model)
         {
             var result = await project_.CreateProjectAsync(

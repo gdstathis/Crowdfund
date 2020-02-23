@@ -38,10 +38,10 @@ namespace CrowdfundCore.Services
                     StatusCode.BadRequest, "Invalid project budget");
             }
 
-            if (options.Creator == null) {
-                return new ApiResult<Project>(
-                    StatusCode.BadRequest, "Null creator");
-            }
+            //if (options.Creator == null) {
+            //    return new ApiResult<Project>(
+            //        StatusCode.BadRequest, "Null creator");
+            //}
 
             var newProject = new Project()
             {
