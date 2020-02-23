@@ -37,7 +37,7 @@ namespace CrowdfundCore.Services
                 return new ApiResult<Project>(
                     StatusCode.BadRequest, "Invalid project budget");
             }
-
+            options.Creator = await context.Set<ProjectCreator>().SingleOrDefaultAsync(p => p.Id == 1);
             //if (options.Creator == null) {
             //    return new ApiResult<Project>(
             //        StatusCode.BadRequest, "Null creator");
