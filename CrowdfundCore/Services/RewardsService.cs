@@ -40,8 +40,8 @@ namespace CrowdfundCore.Services
             //    return new ApiResult<Rewards>(
             //        StatusCode.BadRequest, "Invalid projectId");
             //}
-            
-           
+
+            options.project = await context.Set<Project>().SingleOrDefaultAsync(i => i.Id == 1);
             var reward = new Rewards()
             {
                 Amount = options.Amount,

@@ -11,14 +11,13 @@
         <label for="@Html.IdFor(c => c.AddProjectCreatorOptions.Lastname)">Lastname</label>
         @Html.TextBoxFor(c => c.AddProjectCreatorOptions.Lastname, new { @class = "form-control" })
     </div>
-
-    @*<div class="form-group">
-            <label for="@Html.IdFor(c => c.AddProjectCreatorOptions.Email)">Email</label>
-            @Html.TextBoxFor(c => c.AddProjectCreatorOptions.Email, new { @class = "form-control" })
-            <small id="emailHelp" class="form-text text-muted">
-                Insert Valid Email
-            </small>
-        </div>*@
+    <div class="form-group">
+        <label for="@Html.IdFor(c => c.AddProjectCreatorOptions.Phone)">Phone</label>
+        @Html.TextBoxFor(c => c.AddProjectCreatorOptions.Phone, new { @class = "form-control" })
+        <small id="emailHelp" class="form-text text-muted">
+            Insert Valid Phone
+        </small>
+    </div>
     <div class="form-group">
         <label for="@Html.IdFor(c => c.AddProjectCreatorOptions.Email)">Email</label>
         @Html.TextBoxFor(c => c.AddProjectCreatorOptions.Email,
@@ -27,7 +26,7 @@
             Invalid Email
         </div>
     </div>
-    <button class="btn btn-primary js-submit-projectcreator" type="button" disabled>Submit </button>
+    <button class="btn btn-primary js-submit-projectcreator" >Submit </button>
 </form>
 
 <div class="alert alert-success js-create-projectcreator-success" role="alert"
@@ -37,18 +36,5 @@
      style="display: none">
 </div>
 
-<div class="form-group">
-    <label for="@Html.IdFor(c => c.AddProjectCreatorOptions.Phone)">Phone</label>
-    @Html.TextBoxFor(c => c.AddProjectCreatorOptions.Phone, new { @class = "form-control" })
-    <small id="emailHelp" class="form-text text-muted">
-        Insert Valid Phone
-    </small>
-</div>
 
-<button type="submit" class="btn btn-primary">Submit</button>
-@if (!string.IsNullOrWhiteSpace(Model?.ErrorText))
-{
-    <div class="alert alert-danger" role="alert">
-        @Model?.ErrorText
-    </div>
-}
+

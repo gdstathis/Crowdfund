@@ -10,7 +10,8 @@ namespace CrowdfundCore.Services
 {
     public class StatusService : IStatusService
     {
-        private readonly Data.CrowdfundDbContext context; public StatusService(Data.CrowdfundDbContext ctx)
+        private readonly Data.CrowdfundDbContext context; 
+        public StatusService(Data.CrowdfundDbContext ctx)
         {
             context = ctx ?? throw new ArgumentNullException(nameof(ctx));
         }
