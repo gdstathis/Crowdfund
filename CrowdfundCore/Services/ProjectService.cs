@@ -43,6 +43,7 @@ namespace CrowdfundCore.Services
             //        StatusCode.BadRequest, "Null creator");
             //}
 
+
             var newProject = new Project()
             {
                 budget = options.Budget,
@@ -54,7 +55,7 @@ namespace CrowdfundCore.Services
                 rewardPackages = options.Rewards,
               
             };
-           
+            
             await context.AddAsync(newProject);
 
             try {

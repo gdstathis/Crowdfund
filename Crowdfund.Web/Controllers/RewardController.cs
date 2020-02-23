@@ -42,7 +42,7 @@ namespace Crowdfund.Web.Controllers
                 Models.CreateRewardViewModel model)
         {
             var result = await rewards_.CreateRewardsAsync(
-                model?.AddRewardsOption);
+                model?.AddRewardsOptions);
             if (result == null) {
                 model.ErrorText = "Oops. Something went wrong";
                 return View(model);

@@ -42,7 +42,7 @@ namespace Crowdfund.Web.Controllers
                 Models.CreateStatusViewModel model)
         {
             var result = await status_.AddStatusAsync(
-                model?.AddStatusOptions);
+                model?.AddStatusOptions,1);
             if (result == null) {
                 model.ErrorText = "Oops. Something went wrong";
                 return View(model);
