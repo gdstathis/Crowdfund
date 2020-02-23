@@ -14,7 +14,7 @@ namespace CrowdfundCore.Model
         /// <summary>
         /// 
         /// </summary>
-        public Project project { get; set; }
+        public Project Project { get; set; }
         
         /// <summary>
         /// 

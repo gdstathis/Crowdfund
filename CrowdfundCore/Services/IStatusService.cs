@@ -9,7 +9,7 @@ namespace CrowdfundCore.Services
 {
     public interface IStatusService
     {
-        Task<ApiResult<Status>> AddStatus(AddStatusOptions options, int projectId);
+        Task<ApiResult<Status>> AddStatusAsync(AddStatusOptions options, int projectId);
     
     }
 }

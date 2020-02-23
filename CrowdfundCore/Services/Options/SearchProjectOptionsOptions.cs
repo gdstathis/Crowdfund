@@ -40,7 +40,7 @@ namespace CrowdfundCore.Services.Options
         /// <summary>
         /// 
         /// </summary>
-        public ProjectStatus Status { get; set; }
+       // public ProjectStatus Status { get; set; }
 
         /// <summary>
         /// 

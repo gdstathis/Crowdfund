@@ -32,7 +32,7 @@ namespace Crowdfund.Web.Controllers
         {
             return View();
         }
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> CreateBacker(
                   Models.CreateProjectViewModel model)
         {

@@ -46,7 +46,7 @@ namespace CrowdfundCore.Services
             {
                 Amount = options.Amount,
                 Description = options.Description,
-                project=options.project
+                Project=options.project
                 
             };
             
@@ -72,7 +72,7 @@ namespace CrowdfundCore.Services
             }
             return  context
                 .Set<Rewards>()
-                .SingleOrDefault(s => s.project.Id == id);
+                .SingleOrDefault(s => s.Project.Id == id);
         }
     }
 }

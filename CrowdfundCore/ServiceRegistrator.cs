@@ -46,6 +46,10 @@ namespace CrowdfundCore
                 .RegisterType<RewardsService>()
                 .InstancePerLifetimeScope()
                 .As<IRewardsService>();
+            builder
+                .RegisterType<StatusService>()
+                .InstancePerLifetimeScope()
+                .As<IStatusService>();
 
             builder
                 .RegisterType<Data.CrowdfundDbContext>()

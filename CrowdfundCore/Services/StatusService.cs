@@ -14,7 +14,7 @@ namespace CrowdfundCore.Services
         {
             context = ctx ?? throw new ArgumentNullException(nameof(ctx));
         }
-        public async Task<ApiResult<Status>> AddStatus(AddStatusOptions options, int projectId)
+        public async Task<ApiResult<Status>> AddStatusAsync(AddStatusOptions options, int projectId)
         {
             if (options == null) {
                 return new ApiResult<Status>(
@@ -35,7 +35,7 @@ namespace CrowdfundCore.Services
             var status = new Status()
             {
                 comments=options.comments,
-                project=options.project,
+                Project=options.project,
                 ProjectId=options.ProjectId
 
             };
