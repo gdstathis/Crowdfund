@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using Autofac;
@@ -23,10 +24,20 @@ namespace Crowdfund.Web.Controllers
             project_ = Container.Resolve<IProjectService>();
         }
 
-        public IActionResult Index()
+
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var projectList = await context_
+                .Set<Project>()
+                .Take(100)
+                .ToListAsync();
+
+            return View(projectList);
         }
+        //public IActionResult Index()
+        //{
+        //    return View();
+        //}
         [HttpGet]
         public IActionResult Create()
         {

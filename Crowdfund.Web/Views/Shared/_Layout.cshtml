@@ -40,7 +40,16 @@
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit" asp-area="" asp-controller="Project" asp-action="Create">Search</button>
                 </form>
             </nav>
-            //List View  
+           
+            <div class="list-group">
+                <button type="button" class="list-group-item list-group-item-action active">
+                    Cras justo odio
+                </button>
+                <button type="button" class="list-group-item list-group-item-action">Title</button>
+                <button type="button" class="list-group-item list-group-item-action">Description</button>
+                <button type="button" class="list-group-item list-group-item-action">Name</button>
+                <button type="button" class="list-group-item list-group-item-action" disabled>Budget</button>
+            </div>
             @RenderBody()
         </main>
     </div>
