@@ -6,11 +6,11 @@ namespace CrowdfundCore.Services
 {
     public interface IProjectCreatorService
     {
-        Task<ApiResult<ProjectCreator>> AddProjectCreator(AddProjectCreatorOptions options);
+        Task<ApiResult<ProjectCreator>> AddProjectCreatorAsync(AddProjectCreatorOptions options);
 
-        Task<bool> UpdateProjectCreator(int id, UpdateProjectCreatorOptions options);
+        Task<bool> UpdateProjectCreatorAsync(int id, UpdateProjectCreatorOptions options);
 
-        IQueryable<ProjectCreator> SearchProjectCreators(
+        IQueryable<ProjectCreator> SearchProjectCreatorsAsync(
             SearchProjectCreatorOptions options);
     }
 }

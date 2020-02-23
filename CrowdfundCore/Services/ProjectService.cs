@@ -16,7 +16,7 @@ namespace CrowdfundCore.Services
             context = ctx ?? throw new ArgumentNullException(nameof(ctx));
         }
         
-        public async Task<ApiResult<Project>> CreateProject(AddProjectOptions options)
+        public async Task<ApiResult<Project>> CreateProjectAsync(AddProjectOptions options)
         {
             if (options == null) {
                 return new ApiResult<Project>(
@@ -49,10 +49,10 @@ namespace CrowdfundCore.Services
                 Description = options.Description,
                 Title = options.Title,
                 Creator = options.Creator,
-                photo = options.Photo,
-                video = options.Video,
+                Photo = options.Photo,
+                Video = options.Video,
                 rewardPackages = options.Rewards,
-                
+              
             };
            
             await context.AddAsync(newProject);
@@ -70,7 +70,7 @@ namespace CrowdfundCore.Services
             return ApiResult<Project>.CreateSuccess(newProject); 
         }
 
-        public async Task<ApiResult<Project>> getProjectById(int id)
+        public async Task<ApiResult<Project>> getProjectByIdAsync(int id)
         {
             if (id <=0) {
                 return new ApiResult<Project>(
@@ -87,7 +87,7 @@ namespace CrowdfundCore.Services
             return api;
         }
 
-        public async Task<bool> UpdateProject(int id, UpdateProjectOptions options)
+        public async Task<bool> UpdateProjectAsync(int id, UpdateProjectOptions options)
         {
             if (id < 0) {
                 return false;
@@ -115,12 +115,12 @@ namespace CrowdfundCore.Services
                 updproject.Title = options.Title;
             }
 
-            if (updproject.photo != null) {
-                updproject.photo = options.Photo;
+            if (updproject.Photo != null) {
+                updproject.Photo = options.Photo;
             }
 
-            if (updproject.video != null) {
-                updproject.video = options.Video;
+            if (updproject.Video != null) {
+                updproject.Video = options.Video;
             }
 
             context.Update(updproject);
@@ -136,7 +136,7 @@ namespace CrowdfundCore.Services
             return true;
         }
 
-        public IQueryable<Project> SearchProjects(
+        public IQueryable<Project> SearchProjectsAsync(
             SearchProjectOptionsOptions options)
         {
             if (options == null) {

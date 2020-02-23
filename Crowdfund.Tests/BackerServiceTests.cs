@@ -30,18 +30,20 @@ namespace Crowdfund.Tests
             {
                 Firstname = "eva",
                 Lastname = "zisouli",
-                Email = "evage@gamial.com",
-                Phone = "6973970909",
+                Email = "evage3@gamial.com",
+                Phone = "697334970909",
                 Donate = 150
             };
-            var result = await bcsv_.AddBacker(options);
+            var result = await bcsv_.AddBackerAsync(options);
             
             Assert.NotNull(result);
+            Assert.Equal(CrowdfundCore.StatusCode.Ok, result.ErrorCode);
 
-            var backer = bcsv_.SearchBackers(new SearchBackerOptionsOptions()
+            var backer = bcsv_.SearchBackersAsync(new SearchBackerOptionsOptions()
             {
                 Email = options.Email
             }).SingleOrDefault();
+            
 
             Assert.NotNull(backer);
         }
@@ -56,7 +58,7 @@ namespace Crowdfund.Tests
                 Email = "afafadfsdfsd",
                 Phone = "fsdfsdfsdfwef3"
             };
-            var success =await bcsv_.UpdateBackerOptions(1, options);
+            var success =await bcsv_.UpdateBackerOptionsAsync(1, options);
             Assert.True(success);
         }
     }

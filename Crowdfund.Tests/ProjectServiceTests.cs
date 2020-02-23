@@ -41,7 +41,9 @@ namespace Crowdfund.Tests
                
             };
             
-            var result = await prsv_.CreateProject(options);
+            var result = await prsv_.CreateProjectAsync(options);
+            Assert.Equal(StatusCode.Ok, result.ErrorCode);
+
             Assert.NotNull(result);
         }
         [Fact]
@@ -55,7 +57,7 @@ namespace Crowdfund.Tests
                 //Budget = 1245
 
             };
-            var result = await prsv_.UpdateProject(1, options);
+            var result = await prsv_.UpdateProjectAsync(1, options);
             Assert.True(result);
 
         }

@@ -2,21 +2,25 @@
 {
     public class Rewards
     {
-        public int id { get; set; }
+        /// <summary>
+        /// The Id of reeard
+        /// </summary>
+        public int Id { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
         public decimal Amount { get; set; }
 
         /// <summary>
-        /// 
+        /// Description of reward
         /// </summary>
         public string Description { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-       public Project project { get; set; }
+       public Project Project { get; set; }
 
     }
 }

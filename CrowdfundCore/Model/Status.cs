@@ -6,11 +6,15 @@ namespace CrowdfundCore.Model
 {
     public class Status
     {
-        public int Id { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public Project project { get; set; }
+        public int Id { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Project Project { get; set; }
         
         /// <summary>
         /// 

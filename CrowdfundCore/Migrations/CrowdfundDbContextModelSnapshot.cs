@@ -59,19 +59,19 @@ namespace CrowdfundCore.Migrations
                     b.Property<int>("ProjectId")
                         .HasColumnType("int");
 
-                    b.Property<int>("BackerId")
+                    b.Property<int>("Backerid")
                         .HasColumnType("int");
 
-                    b.HasKey("ProjectId", "BackerId");
+                    b.HasKey("ProjectId", "Backerid");
 
-                    b.HasIndex("BackerId");
+                    b.HasIndex("Backerid");
 
                     b.ToTable("ProjectBacker");
                 });
 
             modelBuilder.Entity("CrowdfundCore.Model.Rewards", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -85,7 +85,7 @@ namespace CrowdfundCore.Migrations
                     b.Property<int?>("projectId")
                         .HasColumnType("int");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.HasIndex("projectId");
 
@@ -119,6 +119,9 @@ namespace CrowdfundCore.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("BackerId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("CreatorId")
                         .HasColumnType("int");
 
@@ -131,22 +134,24 @@ namespace CrowdfundCore.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Photo")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("ProjectCategory")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Video")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal>("budget")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("photo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("video")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("BackerId");
 
                     b.HasIndex("CreatorId");
 
@@ -189,7 +194,7 @@ namespace CrowdfundCore.Migrations
                 {
                     b.HasOne("CrowdfundCore.Backer", "Backer")
                         .WithMany()
-                        .HasForeignKey("BackerId")
+                        .HasForeignKey("Backerid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -203,7 +208,7 @@ namespace CrowdfundCore.Migrations
             modelBuilder.Entity("CrowdfundCore.Model.Rewards", b =>
                 {
                     b.HasOne("CrowdfundCore.Project", "project")
-                        .WithMany()
+                        .WithMany("rewardPackages")
                         .HasForeignKey("projectId");
                 });
 
@@ -218,6 +223,10 @@ namespace CrowdfundCore.Migrations
 
             modelBuilder.Entity("CrowdfundCore.Project", b =>
                 {
+                    b.HasOne("CrowdfundCore.Backer", null)
+                        .WithMany("Backers_project")
+                        .HasForeignKey("BackerId");
+
                     b.HasOne("CrowdfundCore.ProjectCreator", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatorId");

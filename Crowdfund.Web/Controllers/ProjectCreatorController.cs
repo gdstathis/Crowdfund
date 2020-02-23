@@ -39,7 +39,7 @@ namespace Crowdfund.Web.Controllers
         public async Task<IActionResult> CreateProjectCreator(
                   Models.CreateProjectCreatorViewModel model)
         {
-            var result = await creators_.AddProjectCreator(
+            var result = await creators_.AddProjectCreatorAsync(
                 model?.AddProjectCreatorOptions);
             if (result == null) {
                 model.ErrorText = "Oops. Something went wrong";

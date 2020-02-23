@@ -53,10 +53,10 @@ namespace CrowdfundCore.Data
             modelBuilder.
                 Entity<Rewards>().
                 ToTable("Rewards");
-
+        
             modelBuilder
                 .Entity<ProjectBacker>()
-                .HasKey(pb => new { pb.ProjectId, pb.BackerId });
+                .HasKey(pb => new { pb.ProjectId, pb.Backerid });
 
         }
     }

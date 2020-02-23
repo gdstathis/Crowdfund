@@ -24,6 +24,6 @@ namespace CrowdfundCore.Model
         /// <summary>
         /// 
         /// </summary>
-        public int BackerId { get; set; }
+        public int Backerid { get; set; }
     }
 }

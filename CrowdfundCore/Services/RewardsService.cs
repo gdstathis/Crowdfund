@@ -19,7 +19,7 @@ namespace CrowdfundCore.Services
           
         }
 
-        public async Task<ApiResult<Rewards>> CreateRewards(AddRewardsOptions options)
+        public async Task<ApiResult<Rewards>> CreateRewardsAsync(AddRewardsOptions options)
         {
             if (options == null) {
                 return new ApiResult<Rewards>(
@@ -36,20 +36,20 @@ namespace CrowdfundCore.Services
                     StatusCode.BadRequest, "Invalid reward amount");
             }
 
-            if (options.projectId < 0) {
-                return new ApiResult<Rewards>(
-                    StatusCode.BadRequest, "Invalid projectId");
-            }
+            //if (options.projectId < 0) {
+            //    return new ApiResult<Rewards>(
+            //        StatusCode.BadRequest, "Invalid projectId");
+            //}
             
            
             var reward = new Rewards()
             {
                 Amount = options.Amount,
                 Description = options.Description,
-               
-
+                Project=options.project
+                
             };
-
+            
             await context.AddAsync(reward);
 
             try {
@@ -72,13 +72,10 @@ namespace CrowdfundCore.Services
             }
             return  context
                 .Set<Rewards>()
-                .SingleOrDefault(s => s.project.Id == id);
-                
-
+                .SingleOrDefault(s => s.Project.Id == id);
         }
-
     }
-    }
+}
 
 
 

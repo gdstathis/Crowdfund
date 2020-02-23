@@ -14,19 +14,45 @@ namespace CrowdfundCore.Services
         {
             context = ctx ?? throw new ArgumentNullException(nameof(ctx));
         }
-        //public async Task<ApiResult<Status>> AddStatus(AddStatusOptions options, int projectId)
-        //{
-        //    if (options == null)
-        //    {
-        //        return new ApiResult<Status>(
-        //            StatusCode.BadRequest, "Null options");
-        //    }
-        //    var project = await context.Set<Project>().SingleOrDefaultAsync(s => s.Id == projectId);
-        //    if (project == null)
-        //    {
-        //        return new ApiResult<Status>(
-        //            StatusCode.NotFound, "Not Found project with this Id");
-        //    }
-        //}
+        public async Task<ApiResult<Status>> AddStatusAsync(AddStatusOptions options, int projectId)
+        {
+            if (options == null) {
+                return new ApiResult<Status>(
+                    StatusCode.BadRequest, "Null options");
+            }
+
+            if (string.IsNullOrEmpty(options.comments)) {
+                return new ApiResult<Status>(
+                    StatusCode.BadRequest, "Null comments");
+            }
+
+            if (options.project==null) {
+                return new ApiResult<Status>(
+                    StatusCode.BadRequest, "Null Project");
+            }
+
+
+            var status = new Status()
+            {
+                comments=options.comments,
+                Project=options.project,
+                ProjectId=options.ProjectId
+
+            };
+
+            await context.AddAsync(status);
+
+            try {
+                await context.SaveChangesAsync();
+                Console.WriteLine("ok status");
+            } catch (Exception ex) {
+                Console.WriteLine("fail add status");
+                Console.WriteLine(ex);
+                return new ApiResult<Status>(
+                    StatusCode.InternalServerError, "Could not save status");
+            }
+
+            return ApiResult<Status>.CreateSuccess(status);
+        }
     }
 }
