@@ -30,6 +30,21 @@ $('.js-add-reward').on('click', function () {
     $amount.val('');
     console.log(rewards);
 });
+//$('.js-submit-reward').on('click', () => {
+
+//    $('.js-submit-reward').attr('disabled', true);
+//    let description = $('.js-description').val();
+//    let amount = $('.js-amount').val();
+
+//    let data = JSON.stringify({
+//        description: description,
+//        amount: amount,
+//        rewards: rewards
+//    });
+
+//    $.ajax({
+
+
 
 
 
