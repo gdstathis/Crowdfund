@@ -7,6 +7,32 @@
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
 })
+
+let rewards = [];
+
+$('.js-add-reward').on('click', function () {
+    let $description = $('.js-reward-description');
+    let $amount = $('.js-reward-amount');
+
+    let description = $description.val();
+    let amount = $amount.val();
+
+    if (amount.val === 0 || description.length === 0) {
+        return;
+    }
+
+    rewards.push({
+        description: description,
+        amount: amount
+    });
+
+    $description.val('');
+    $amount.val('');
+    console.log(rewards);
+});
+
+
+
 //VALIDATION GIA TO EMAIL TOU BACKER
 function validateEmail(email) {
 

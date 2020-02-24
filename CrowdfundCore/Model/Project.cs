@@ -51,7 +51,7 @@ namespace CrowdfundCore
         /// Rewards of the project
         /// </summary>
         public ICollection<Rewards> rewardPackages { get; set; }
-
+     //   public List<Model.Rewards> Rewards { get; set; }
         /// <summary>
         /// Status of project
         /// </summary>
