@@ -41,8 +41,8 @@ namespace Crowdfund.Web.Controllers
         public async Task<IActionResult> Create(
                 Models.SearchProjectViewModel model)
         {
-            var result = await project_.SearchProjectsAsync(
-                model?);
+            var result =  project_.SearchProjectsAsync(
+                model?.SearchProjectOptions );
             if (result == null) {
                 model.ErrorText = "Oops. Something went wrong";
                 return View(model);
