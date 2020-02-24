@@ -3,8 +3,10 @@
 @{
     foreach (var project in Model)
     {
-        <li>
-            @project.Title      @project.Description        @project.Deadline
-        </li>
+     
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">@project.Title      @project.Description        @project.Deadline</li>
+  
+</ul>
     }
 }
