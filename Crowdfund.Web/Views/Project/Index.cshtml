@@ -1,12 +1,39 @@
-﻿@model  List<CrowdfundCore.Project> 
+﻿@model List<CrowdfundCore.Project>
+    @*<div class="card-deck">*@
+        @{
+            foreach (var project in Model) {
 
-@{
-    foreach (var project in Model)
-    {
-     
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">@project.Title      @project.Description        @project.Deadline</li>
+                @*<ul class="list-group list-group-flush">
+                            <li class="list-group-item">@project.Title      @project.Description        @project.Deadline</li>
+
+                </ul>*@
+                @*<div class="card">
+                    <div class="card-header">@project.Title</div>
+                    <div class="card-body">@project.Id</div>
+                    <div class="card-footer">@project.Description</div>
+                </div>*@
+
+                @*<div class="card">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">@project.Title</h5>
+                        <p class="card-text">@project.Description.</p>
+                        <p class="card-text"><small class="text-muted">@project.Id</small></p>
+                    </div>
+                </div>*@
+
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="..." alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">@project.Title</h5>
+                        <p class="card-text">@project.Description</p>
+                        <p class="card-text">@project.Deadline</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            }
   
-</ul>
-    }
-}
+
+        }
+   
+   

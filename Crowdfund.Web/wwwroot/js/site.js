@@ -15,38 +15,59 @@ $('.js-add-reward').on('click', function () {
     let $amount = $('.js-reward-amount');
 
     let description = $description.val();
-    let amount = $amount.val();
+    let amount = parseFloat($amount.val());
 
-    if (amount.val === 0 || description.length === 0) {
+    if (amount.length === 0 || description.length === 0) {
         return;
     }
-
+    
     rewards.push({
         description: description,
-        amount: amount
+        amount:amount
     });
 
     $description.val('');
     $amount.val('');
-    console.log(rewards);
 });
-//$('.js-submit-reward').on('click', () => {
-
-//    $('.js-submit-reward').attr('disabled', true);
-//    let description = $('.js-description').val();
-//    let amount = $('.js-amount').val();
-
-//    let data = JSON.stringify({
-//        description: description,
-//        amount: amount,
-//        rewards: rewards
-//    });
-
-//    $.ajax({
 
 
+$('.js-btn-create-project').on('click', () => {
+    $('.js-btn-create-project').attr('disabled', true);
 
+    let title = $('.js-title').val();
+    let description = $('.js-description').val();
+    let budget = $('.js-budget').val();
+    let photo = $('.js-photo').val();
 
+    let data = JSON.stringify({
+        CreateProjectOptions: {
+            title: title,
+            description: description,
+            budget: parseFloat(budget),
+            photo: photo
+        },
+        rewards: rewards
+    });
+
+    $.ajax({
+        url: '/project/Create',
+        type: 'POST',
+        contentType: 'application/json',
+        data: data
+    }).done((project) => {
+        window.location.href = `/project/${project.id}`;
+    }).fail((xhr) => {
+        $('.alert').hide();
+        let $alertArea = $('.js-create-project-alert');
+        $alertArea.attr("class", "alert alert-danger");
+        $alertArea.html(xhr.responseText);
+        $alertArea.fadeIn();
+
+        setTimeout(function () {
+            $('.js-btn-create-project').attr('disabled', false);
+        }, 300);
+    });
+});
 
 //VALIDATION GIA TO EMAIL TOU BACKER
 function validateEmail(email) {
@@ -162,7 +183,4 @@ $('.js-submit-projectcreator').on('click', () => {
         }, 300);
     });
 }); 
-
-
-
 
