@@ -15,10 +15,6 @@
     <ProjectReference Include="..\CrowdfundCore\CrowdfundCore.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\NewFolder\" />
-  </ItemGroup>
-
 
 
 </Project>

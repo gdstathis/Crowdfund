@@ -25,32 +25,35 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Project" asp-action="Create">Create Project</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Backer" asp-action="Create">Backer</a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
-            <nav class="navbar navbar-light bg-light">
-                <form class="form-inline">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" asp-area="" asp-controller="Project" asp-action="Search">Search</button>
-                </form>
-            </nav>
-           
-            @*<div class="list-group">
-                <button type="button" class="list-group-item list-group-item-action active">
-                   Project List
-                </button>
-                <button type="button" class="list-group-item list-group-item-action">Title</button>
-                <button type="button" class="list-group-item list-group-item-action">Description</button>
-                <button type="button" class="list-group-item list-group-item-action">Name</button>
-                <button type="button" class="list-group-item list-group-item-action">Budget</button>
-            </div>*@
+        @*<main role="main" class="pb-3">
+        <nav class="navbar navbar-light bg-light">
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" asp-area="" asp-controller="Project" asp-action="Search">Search</button>
+            </form>
+        </nav>*@
 
+        @*<div class="list-group">
+            <button type="button" class="list-group-item list-group-item-action active">
+               Project List
+            </button>
+            <button type="button" class="list-group-item list-group-item-action">Title</button>
+            <button type="button" class="list-group-item list-group-item-action">Description</button>
+            <button type="button" class="list-group-item list-group-item-action">Name</button>
+            <button type="button" class="list-group-item list-group-item-action">Budget</button>
+        </div>*@
 
-            @RenderBody()
+        @*<img src="~/NewFolder/Crowdfunding.jpg" alt="Flowers in Chania">*@
+        @RenderBody()
         </main>
     </div>
 
