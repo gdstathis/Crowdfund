@@ -32,13 +32,21 @@ namespace Crowdfund.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult Search()
         {
             return View();
         }
+        //[HttpGet("project/{id}")]
+        //public IActionResult Search(string title)
+        //{
+        //    var project = context_.Set<Project>()
+        //        .SingleOrDefault(p => p.Title.Equals(title));
 
-      [HttpPost]  
-        public async Task<IActionResult> Create(
+        //    return View(project);
+        //}
+
+        [HttpPost]  
+        public async Task<IActionResult> Search(
                 Models.SearchProjectViewModel model)
         {
             var result =  project_.SearchProjectsAsync(
@@ -48,8 +56,6 @@ namespace Crowdfund.Web.Controllers
                 return View(model);
             }
             return Ok();
-
-
         }
     }
 }
