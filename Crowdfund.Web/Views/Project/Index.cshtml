@@ -1,7 +1,10 @@
-﻿
+﻿@model  List<CrowdfundCore.Project> 
+
 @{
-    ViewData["Title"] = "Index";
+    foreach (var project in Model)
+    {
+        <li>
+            @project.Title      @project.Description        @project.Deadline
+        </li>
+    }
 }
-
-<h1>Index</h1>
-

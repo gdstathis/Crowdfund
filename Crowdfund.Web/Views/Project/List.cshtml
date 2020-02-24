@@ -1,4 +1,9 @@
-﻿
-    <div class="row js-view-project-list">
-    </div>
+﻿@model Crowdfund.Web.Models.CreateProjectViewModel
 
+@{
+    foreach(var project in Model.Projects){
+        <li>
+            @project.Id
+        </li>
+    }
+ }

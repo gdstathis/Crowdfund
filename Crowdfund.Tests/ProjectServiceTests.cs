@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Autofac;
 using CrowdfundCore;
 using CrowdfundCore.Data;
-using CrowdfundCore.Model;
 using CrowdfundCore.Services;
 using CrowdfundCore.Services.Options;
 using Xunit;
@@ -27,7 +23,7 @@ namespace Crowdfund.Tests
             var creator = new ProjectCreator()
             {
                 Email="SDfsd",
-                Phone="dsfsdfds"
+                Phone="dsfssdasddfds"
             };
           
             var options = new AddProjectOptions()

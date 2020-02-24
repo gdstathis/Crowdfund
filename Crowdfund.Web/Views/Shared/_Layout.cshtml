@@ -25,7 +25,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="ProjectCreator" asp-action="Create">Create ProjectCreator Account</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Project" asp-action="Create">Create ProjectC</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Project" asp-action="Create">Create Project</a>
                         </li>
                     </ul>
                 </div>
@@ -37,19 +37,21 @@
             <nav class="navbar navbar-light bg-light">
                 <form class="form-inline">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" asp-area="" asp-controller="Project" asp-action="Create">Search</button>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" asp-area="" asp-controller="Project" asp-action="Search">Search</button>
                 </form>
             </nav>
            
-            <div class="list-group">
+            @*<div class="list-group">
                 <button type="button" class="list-group-item list-group-item-action active">
                    Project List
                 </button>
                 <button type="button" class="list-group-item list-group-item-action">Title</button>
                 <button type="button" class="list-group-item list-group-item-action">Description</button>
                 <button type="button" class="list-group-item list-group-item-action">Name</button>
-                <button type="button" class="list-group-item list-group-item-action" disabled>Budget</button>
-            </div>
+                <button type="button" class="list-group-item list-group-item-action">Budget</button>
+            </div>*@
+
+
             @RenderBody()
         </main>
     </div>

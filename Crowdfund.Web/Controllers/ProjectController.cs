@@ -25,12 +25,12 @@ namespace Crowdfund.Web.Controllers
         }
 
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var projectList = await context_
+            var projectList = context_
                 .Set<Project>()
                 .Take(100)
-                .ToListAsync();
+                .ToList();
 
             return View(projectList);
         }
@@ -43,6 +43,21 @@ namespace Crowdfund.Web.Controllers
         {
             return View();
         }
+
+        [HttpGet("project/{id}")]
+        public IActionResult Detail(int id)
+        {
+            //var project = await project_.SearchProjectsAsync(
+            //    new CrowdfundCore.Services.Options.SearchProjectOptionsOptions()
+            //    {
+            //        Id = id
+            //    }).SingleOrDefaultAsync();
+            var project = context_.Set<Project>()
+                .SingleOrDefault(p => p.Id == id);
+
+            return View(project);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Create(
                   Models.CreateProjectViewModel model)
@@ -53,9 +68,8 @@ namespace Crowdfund.Web.Controllers
                 model.ErrorText = "Oops. Something went wrong";
                 return View(model);
             }
-            return Ok();
 
-
+            return RedirectToAction("detail", new { id = result.Data.Id });
         }
     }
 }
