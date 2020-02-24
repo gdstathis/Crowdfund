@@ -8,6 +8,7 @@ $(function () {
     $('[data-toggle="tooltip"]').tooltip()
 })
 
+
 let rewards = [];
 
 $('.js-add-reward').on('click', function () {
@@ -184,3 +185,35 @@ $('.js-submit-projectcreator').on('click', () => {
     });
 }); 
 
+$('.js-btn-search-project').on('click', () => {
+    $('.js-btn-search-project').attr('disabled', true);
+
+    let title = $('.js-search-title').val();
+   
+    let data = JSON.stringify({
+        SearchProjectOptionsOptions: {
+            title: title,
+          
+          
+        }
+    });
+
+    $.ajax({
+        url: '/project/search',
+        type: 'POST',
+        contentType: 'application/json',
+        data: data
+    }).done((project) => {
+        window.location.href = `/project/title/${project.title}`;
+    }).fail((xhr) => {
+        $('.alert').hide();
+        let $alertArea = $('.js-search-project-alert');
+        $alertArea.attr("class", "alert alert-danger");
+        $alertArea.html(xhr.responseText);
+        $alertArea.fadeIn();
+
+        setTimeout(function () {
+            $('.js-btn-search-project').attr('disabled', false);
+        }, 300);
+    });
+});

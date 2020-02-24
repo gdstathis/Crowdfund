@@ -47,7 +47,7 @@ namespace Crowdfund.Web.Controllers
 
         [HttpPost]  
         public async Task<IActionResult> Search(
-                Models.SearchProjectViewModel model)
+           [FromBody] Models.SearchProjectViewModel model)
         {
             var result =  project_.SearchProjectsAsync(
                 model?.SearchProjectOptions );
@@ -55,7 +55,7 @@ namespace Crowdfund.Web.Controllers
                 model.ErrorText = "Oops. Something went wrong";
                 return View(model);
             }
-            return Ok();
+            return Json(result);
         }
     }
 }
