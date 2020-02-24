@@ -1,9 +1,11 @@
 ﻿@model IQueryable<CrowdfundCore.Project>;
   @*<h1>@Model.Title</h1><h2>@Model.Description</h2><h3>@Model.budget</h3><h4>@Model.Deadline</h4>*@
-@{ foreach (var p in Model)
+@{ 
+    var i = 1;
+    foreach (var p in Model)
     {
         <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="~/NewFolder/chinamarket.jpg" alt="">
+            <img class="card-img-top" src="~/NewFolder/2.jpg" alt="">
             <div class="card-body">
                 <h5 class="card-title">
                     @p.Title<h5>
@@ -12,4 +14,5 @@
                     <p class="card-text">@p.Deadline</p>
                     <a href="/project/title/@p.Title" class="btn btn-primary">Project Details</a>
         </div>
+            @i++;
     </div>}}

@@ -1,6 +1,6 @@
 ﻿@model List<CrowdfundCore.Project>
     @*<div class="card-deck">*@
-        @{
+        @{ 
             foreach (var project in Model) {
 
                 @*<ul class="list-group list-group-flush">
@@ -23,16 +23,17 @@
                 </div>*@
 
                 <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="~/NewFolder/chinamarket.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="~/NewFolder/2.jpg" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">@project.Title</h5>
                         <p class="card-text">@project.Description</p>
                         <p class="card-text">@project.Deadline</p>
-                        <a href="#" class="btn btn-primary">View</a>
+                        <a href="/project/title/@project.Title" class="btn btn-primary ">View</a>
                     </div>
                 </div>
+          
             }
-  
+
 
         }
    
