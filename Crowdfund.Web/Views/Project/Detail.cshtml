@@ -18,20 +18,23 @@
     <p><strong>Budget required: @project.budget</strong></p>
 
 </div>
-@{
-    foreach (var p in rewards) {
-    <table class="table">
-        <thead>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Description</th>
+            <th scope="col">Amount</th>
+
+        </tr>
+    </thead>
+    @{ foreach (var p in rewards) {
+            <tbody>
             <tr>
-                <th scope="col">#@p.Id</th>
-                <th scope="col">@p.Description</th>
-                <th scope="col">@p.Amount</th>
                 
+                <td>@p.Id</td>
+                <td>@p.Description</td>
+                <td>@p.Amount</td>
             </tr>
-        </thead>
-        <tbody>
-     </table>
-    }
-}
-
-
+            </tbody>
+          }}      
+        </table>
