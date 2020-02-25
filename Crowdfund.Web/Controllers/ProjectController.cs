@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using Autofac;
+using Crowdfund.Web.Extensions;
+using Crowdfund.Web.Models;
 using CrowdfundCore;
 using CrowdfundCore.Data;
 using CrowdfundCore.Services;
-using CrowdfundCore.Services.Options;
 using Microsoft.AspNetCore.Mvc;
-using Crowdfund.Web.Extensions;
-using Crowdfund.Web.Models;
 
 namespace Crowdfund.Web.Controllers
 {

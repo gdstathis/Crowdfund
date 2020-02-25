@@ -9,8 +9,14 @@ namespace Crowdfund.Web.Models
 {
     public class DetailViewModel
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public Project Project { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public CrowdfundDbContext Context { get; set; }
     }
 }

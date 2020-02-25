@@ -25,7 +25,7 @@
         /// <summary>
         /// 
         /// </summary>
-       public Project Project { get; set; }
+        public Project Project { get; set; }
 
     }
 }

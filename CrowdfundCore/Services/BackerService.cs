@@ -46,9 +46,7 @@ namespace CrowdfundCore.Services
                 Donate = options.Donate,            
                 Email=options.Email,
                 Phone=options.Phone,
-                //Firstname=options.Firstname,
-                //Lastname=options.Lastname
-                
+
             };
 
             if (!string.IsNullOrEmpty(options.Firstname)) { Backer.Firstname = options.Firstname; }
@@ -66,6 +64,7 @@ namespace CrowdfundCore.Services
             }            
             return ApiResult<Backer>.CreateSuccess(Backer); 
         }
+
         public async Task<bool> UpdateBackerOptionsAsync(int id, UpdateBackerOptions options)
         {
             if (id <=0) {

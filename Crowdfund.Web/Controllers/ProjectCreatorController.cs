@@ -23,11 +23,10 @@ namespace Crowdfund.Web.Controllers
             creators_ = Container.Resolve<IProjectCreatorService>();
         }
 
-        
-       public IActionResult Index()
-       {
-         return View();
-       }
+        public IActionResult Index()
+        {
+          return View();
+        }
 
         [HttpGet]
         public IActionResult Create()

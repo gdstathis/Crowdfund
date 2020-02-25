@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Autofac;
 using Crowdfund.Tests;
 using CrowdfundCore;
@@ -10,6 +6,7 @@ using CrowdfundCore.Data;
 using CrowdfundCore.Services;
 using CrowdfundCore.Services.Options;
 using Xunit;
+
 namespace CrowdfundTests
 {
     public partial class ProjectCreatorServiceTests : IClassFixture<CrowdfundFixture>
@@ -27,7 +24,6 @@ namespace CrowdfundTests
             var options = new AddProjectCreatorOptions()
             {
                 Email = "evazisouli@gmail.com",
-                //TotalCost = 156,
                 Firstname = "eva",
                 Lastname = "zisouli",
                 Phone = "6973970909",

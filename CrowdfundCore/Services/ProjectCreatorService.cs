@@ -61,6 +61,7 @@ namespace CrowdfundCore.Services
             return ApiResult<ProjectCreator>.CreateSuccess(ProjectCreator);
 
         }
+
         public async Task<bool> UpdateProjectCreatorAsync(int id, UpdateProjectCreatorOptions options)
         {
             if (id < 0) {

@@ -51,7 +51,6 @@ namespace Crowdfund.Tests
                 Description = "WHATEVER",
                 Title = "NEW TITLE",
                 //Budget = 1245
-
             };
             var result = await prsv_.UpdateProjectAsync(1, options);
             Assert.True(result);

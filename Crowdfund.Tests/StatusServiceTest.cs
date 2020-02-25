@@ -23,24 +23,24 @@ namespace Crowdfund.Tests
             stsrv_ = fixture.Container.Resolve<IStatusService>();
         }
 
-        [Fact]
-        public async Task AddStatus_Success()
-        {
-            var project = new Project()
-            {
-                Title = "sdaqsad",
-                Id = 1,
-                Description = "Sdasd"
-            };
-            var status = new AddStatusOptions()
-            {
-                comments="DSFf",
-                project=project,
-                //ProjectId=1
-            };
-            var result = await stsrv_.AddStatusAsync(status,1);
-            Assert.NotNull(result);
-            Assert.Equal(StatusCode.Ok, result.ErrorCode);
-        }
+        //[Fact]
+        //public async Task AddStatus_Success()
+        //{
+        //    var project = new Project()
+        //    {
+        //        Title = "sdaqsad",
+        //        Id = 1,
+        //        Description = "Sdasd"
+        //    };
+        //    var status = new AddStatusOptions()
+        //    {
+        //        comments="DSFf",
+        //        project=project,
+        //        //ProjectId=1
+        //    };
+        //    var result = await stsrv_.AddStatusAsync(status,1);
+        //    Assert.NotNull(result);
+        //    Assert.Equal(StatusCode.Ok, result.ErrorCode);
+        //}
     }
 }

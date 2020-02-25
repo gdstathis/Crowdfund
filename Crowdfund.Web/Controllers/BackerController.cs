@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Autofac;
-using Autofac.Core;
-using Crowdfund.Web.Extensions;
 using CrowdfundCore;
-
 using CrowdfundCore.Data;
 using CrowdfundCore.Services;
 using Microsoft.AspNetCore.Mvc;
