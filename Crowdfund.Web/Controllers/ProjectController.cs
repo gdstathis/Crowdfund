@@ -10,6 +10,7 @@ using CrowdfundCore.Services;
 using CrowdfundCore.Services.Options;
 using Microsoft.AspNetCore.Mvc;
 using Crowdfund.Web.Extensions;
+using Crowdfund.Web.Models;
 
 namespace Crowdfund.Web.Controllers
 {
@@ -72,9 +73,16 @@ namespace Crowdfund.Web.Controllers
         {
             var project = context_.Set<Project>()
                 .Where(p => p.Id == id)
+                .Include(p => p.Rewards)
                 .SingleOrDefault();
 
-            return View(project);
+            var model = new DetailViewModel()
+            {
+                Project = project,
+                Context = context_
+            };
+
+            return View(model);
         }
 
         [HttpGet("project/title/{title}")]

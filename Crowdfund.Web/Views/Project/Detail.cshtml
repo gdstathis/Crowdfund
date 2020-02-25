@@ -1,9 +1,37 @@
-﻿@model CrowdfundCore.Project
+﻿@model DetailViewModel;
+@using CrowdfundCore.Model;
+
+@{
+    var project = Model.Project;
+
+    var rewards = Model.Context
+        .Set<Rewards>()
+        .Where(r => r.ProjectId == project.Id)
+        .ToList();
+}
 
 <div class="jumbotron">
-    <h1 class="display-4">@Model.Title</h1>
-    <p class="lead">@Model.Description</p>
+    <h1 class="display-4">@project.Title</h1>
+    <p class="lead">@project.Description</p>
     <hr class="my-4">
-    <p>Deadline: @Model.Deadline.ToString("dd/MM/yyyy")</p>
-    <p><strong>Budget required: @Model.budget</strong></p>
+    <p>Deadline: @project.Deadline.ToString("dd/MM/yyyy")</p>
+    <p><strong>Budget required: @project.budget</strong></p>
+
 </div>
+@{
+    foreach (var p in rewards) {
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#@p.Id</th>
+                <th scope="col">@p.Description</th>
+                <th scope="col">@p.Amount</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+     </table>
+    }
+    }
+
+
