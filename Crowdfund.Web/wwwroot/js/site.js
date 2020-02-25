@@ -56,6 +56,7 @@ $('.js-btn-create-project').on('click', () => {
         contentType: 'application/json',
         data: data
     }).done((project) => {
+        debugger;
         window.location.href = `/project/${project.id}`;
     }).fail((xhr) => {
         $('.alert').hide();

@@ -9,6 +9,7 @@ using CrowdfundCore.Data;
 using CrowdfundCore.Services;
 using CrowdfundCore.Services.Options;
 using Microsoft.AspNetCore.Mvc;
+using Crowdfund.Web.Extensions;
 
 namespace Crowdfund.Web.Controllers
 {
@@ -77,17 +78,20 @@ namespace Crowdfund.Web.Controllers
         public async Task<IActionResult> Create(
             [FromBody] Models.CreateProjectViewModel model)
         {
+            model.CreateProjectOptions.Rewards = model.Rewards;
+
             var result = await project_.CreateProjectAsync(
                 model?.CreateProjectOptions);
             
-            if (result == null) {
-                model.ErrorText = "Oops. Something went wrong";
-
-                return View(model);
+            if (!result.Success) {
+                return result.AsStatusResult();
             }
 
-            return Json(result.Data);
+            return Json(new {
+                id = result.Data.Id
+            });
         }
+
         [HttpPost]
         public IActionResult Search(
            [FromBody] SearchProjectOptionsOptions options)

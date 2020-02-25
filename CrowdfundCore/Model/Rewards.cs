@@ -20,6 +20,11 @@
         /// <summary>
         /// 
         /// </summary>
+        public int ProjectId { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
        public Project Project { get; set; }
 
     }

@@ -50,7 +50,7 @@ namespace CrowdfundCore
         /// <summary>
         /// Rewards of the project
         /// </summary>
-        public ICollection<Rewards> rewardPackages { get; set; }
+        public ICollection<Rewards> Rewards { get; set; }
      //   public List<Model.Rewards> Rewards { get; set; }
         /// <summary>
         /// Status of project
@@ -77,7 +77,7 @@ namespace CrowdfundCore
             DateCreated = DateTime.Today;
             Deadline = DateTime.Today.AddDays(25);
             Status = new List<Status>();
-            rewardPackages = new List<Rewards>();
+            Rewards = new List<Rewards>();
         }
     }
 }
