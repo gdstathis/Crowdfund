@@ -14,6 +14,13 @@
   <ItemGroup>
     <ProjectReference Include="..\CrowdfundCore\CrowdfundCore.csproj" />
   </ItemGroup>
+	<ItemGroup>
+
+		<!-- extends watching group to include *.js files -->
+
+		<Watch Include="**\*.js" Exclude="node_modules\**\*;**\*.js.map;obj\**\*;bin\**\*" />
+		<Watch Include="**\*.cshtml" />
+	</ItemGroup>
 
 
 

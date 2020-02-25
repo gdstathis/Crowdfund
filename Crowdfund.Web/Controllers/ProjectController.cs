@@ -50,14 +50,33 @@ namespace Crowdfund.Web.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Search(
+           [FromBody] Models.SearchProjectViewModel model)
+        {
+            var result = project_.SearchProjectsAsync(
+                model?.SearchProjectOptions)
+                .Select(p => new {
+                    title = p.Title,
+                    budget = p.budget,
+                    deadline = p.Deadline.ToString("dd/MM/yyyy"),
+                    detailsUrl = Url.Action("detail", "project", new { id = p.Id })
+                })
+                .ToList();
+
+            return Json(result);
+        }
+
         [HttpGet("project/{id}")]
         public IActionResult Detail(int id)
         {
             var project = context_.Set<Project>()
-                .Where(p => p.Id == id);
+                .Where(p => p.Id == id)
+                .SingleOrDefault();
 
             return View(project);
         }
+
         [HttpGet("project/title/{title}")]
         public IActionResult Detail(string title)
         {
@@ -90,26 +109,6 @@ namespace Crowdfund.Web.Controllers
             return Json(new {
                 id = result.Data.Id
             });
-        }
-
-        [HttpPost]
-        public IActionResult Search(
-           [FromBody] SearchProjectOptionsOptions options)
-        {
-            if (options.Title==null) {
-                return BadRequest("Project title is required");
-            }
-
-            var resultList = project_.SearchProjectsAsync(
-                new SearchProjectOptionsOptions()
-                {
-                    Title = options.Title
-                })
-                .Select(r => new { r.Title, r.Creator.Email, r.Description, r.budget })
-                .Take(100)
-                .ToList();
-
-            return Json(resultList);
         }
     }
 }

@@ -1,40 +1,15 @@
 ﻿@model List<CrowdfundCore.Project>
-    @*<div class="card-deck">*@
-        @{ 
-            foreach (var project in Model) {
+@{
+    foreach (var project in Model) {
 
-                @*<ul class="list-group list-group-flush">
-                            <li class="list-group-item">@project.Title      @project.Description        @project.Deadline</li>
-
-                </ul>*@
-                @*<div class="card">
-                    <div class="card-header">@project.Title</div>
-                    <div class="card-body">@project.Ids</div>
-                    <div class="card-footer">@project.Description</div>
-                </div>*@
-
-                @*<div class="card">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">@project.Title</h5>
-                        <p class="card-text">@project.Description.</p>
-                        <p class="card-text"><small class="text-muted">@project.Id</small></p>
-                    </div>
-                </div>*@
-
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="~/NewFolder/2.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">@project.Title</h5>
-                        <p class="card-text">@project.Description</p>
-                        <p class="card-text">@project.Deadline</p>
-                        <a href="/project/title/@project.Title" class="btn btn-primary ">View</a>
-                    </div>
-                </div>
-          
-            }
-
-
-        }
-   
-   
+        <div class="card" style="width: 18rem;margin-top: 20px">
+            <img class="card-img-top" src="~/NewFolder/2.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">@project.Title</h5>
+                <p class="card-text">@project.Description</p>
+                <p class="card-text">@project.Deadline.ToString("dd/MM/yyyy")</p>
+                <a href="@Url.Action("detail", "project", new { id = project.Id })" class="btn btn-primary">More...</a>
+            </div>
+        </div>
+    }
+}

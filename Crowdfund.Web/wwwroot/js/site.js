@@ -21,7 +21,7 @@ $('.js-add-reward').on('click', function () {
     if (amount.length === 0 || description.length === 0) {
         return;
     }
-    
+    debugger;
     rewards.push({
         description: description,
         amount:amount
@@ -33,8 +33,6 @@ $('.js-add-reward').on('click', function () {
 
 
 $('.js-btn-create-project').on('click', () => {
-    $('.js-btn-create-project').attr('disabled', true);
-
     let title = $('.js-title').val();
     let description = $('.js-description').val();
     let budget = $('.js-budget').val();
@@ -49,6 +47,12 @@ $('.js-btn-create-project').on('click', () => {
         },
         rewards: rewards
     });
+
+    if (rewards.length === 0) {
+        return;
+    }
+
+    $('.js-btn-create-project').attr('disabled', true);
 
     $.ajax({
         url: '/project/Create',
@@ -188,14 +192,13 @@ $('.js-submit-projectcreator').on('click', () => {
 
 $('.js-btn-search-project').on('click', () => {
     $('.js-btn-search-project').attr('disabled', true);
+    $('.js-table-search').html('');
 
     let title = $('.js-search-title').val();
    
     let data = JSON.stringify({
-        SearchProjectOptionsOptions: {
-            title: title,
-          
-          
+        SearchProjectOptions: {
+            title: title   
         }
     });
 
@@ -204,8 +207,26 @@ $('.js-btn-search-project').on('click', () => {
         type: 'POST',
         contentType: 'application/json',
         data: data
-    }).done((project) => {
-        window.location.href = `/project/title/${project.title}`;
+    }).done((projects) => {
+        if (projects.length === 0) {
+            return;
+        }
+
+        projects.forEach(p => {
+            let row =
+                `<tr>
+                    <td>${p.title}</td>
+                    <td>${p.budget}</td>
+                    <td>${p.deadline}</td>
+                    <td><a href="${p.detailsUrl}">More...</a></td>
+                </tr>`;
+
+            $('.js-table-search').append(row);
+        });
+        setTimeout(function () {
+            $('.js-btn-search-project').attr('disabled', false);
+        }, 300);
+
     }).fail((xhr) => {
         $('.alert').hide();
         let $alertArea = $('.js-search-project-alert');

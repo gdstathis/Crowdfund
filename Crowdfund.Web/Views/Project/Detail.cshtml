@@ -1,18 +1,9 @@
-﻿@model IQueryable<CrowdfundCore.Project>;
-  @*<h1>@Model.Title</h1><h2>@Model.Description</h2><h3>@Model.budget</h3><h4>@Model.Deadline</h4>*@
-@{ 
-    var i = 1;
-    foreach (var p in Model)
-    {
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="~/NewFolder/2.jpg" alt="">
-            <div class="card-body">
-                <h5 class="card-title">
-                    @p.Title<h5>
-                    <p class="card- text">@p.Description</p>
-                    <p class="card-text">@p.Id</p>
-                    <p class="card-text">@p.Deadline</p>
-                    <a href="/project/title/@p.Title" class="btn btn-primary">Project Details</a>
-        </div>
-            @i++;
-    </div>}}
+﻿@model CrowdfundCore.Project
+
+<div class="jumbotron">
+    <h1 class="display-4">@Model.Title</h1>
+    <p class="lead">@Model.Description</p>
+    <hr class="my-4">
+    <p>Deadline: @Model.Deadline.ToString("dd/MM/yyyy")</p>
+    <p><strong>Budget required: @Model.budget</strong></p>
+</div>

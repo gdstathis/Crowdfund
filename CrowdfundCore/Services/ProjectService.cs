@@ -143,7 +143,7 @@ namespace CrowdfundCore.Services
             var query = context.Set<Project>().AsQueryable();
             
             if (!string.IsNullOrWhiteSpace(options.Title)) {
-                query = query.Where(t => t.Title == options.Title);
+                query = query.Where(t => t.Title.Contains(options.Title));
             }
 
             if (!string.IsNullOrWhiteSpace(options.Description)) {

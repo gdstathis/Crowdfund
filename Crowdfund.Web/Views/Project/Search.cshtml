@@ -6,13 +6,19 @@
             <label for="@Html.IdFor(c => c.SearchProjectOptions.Title)">Title</label>
             @Html.TextBoxFor(c => c.SearchProjectOptions.Title, new { @class = "form-control js-search-title" })
         </div>
-
-        
-       
-        <button type="button" class="btn btn-primary js-btn-search-project">Submit</button>
-        @if (!string.IsNullOrWhiteSpace(Model?.ErrorText)) {
-            <div class="alert alert-danger" role="alert">
-                @Model?.ErrorText
-            </div>
-        }
+        <button type="button" class="btn btn-primary js-btn-search-project">Search</button>
     </form>
+
+    <table class="table table-hover" style="margin-top: 30px">
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Budget</th>
+                <th scope="col">Deadline</th>
+                <th scope="col">Details</th>
+            </tr>
+        </thead>
+        <tbody class="js-table-search">
+            
+        </tbody>
+    </table>
