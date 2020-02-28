@@ -31,16 +31,18 @@ namespace Crowdfund.Web.Controllers
             return View();
         }
 
-      [HttpPost]  
+        [HttpPost]  
         public async Task<IActionResult> Create(
                 Models.CreateRewardViewModel model)
         {
             var result = await rewards_.CreateRewardsAsync(
                 model?.AddRewardsOptions);
+
             if (result == null) {
                 model.ErrorText = "Oops. Something went wrong";
                 return View(model);
             }
+
             return Ok();
 
 

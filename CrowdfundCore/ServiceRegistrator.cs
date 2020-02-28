@@ -21,12 +21,14 @@ namespace CrowdfundCore
 
             return builder.Build();
         }
+
         public static void RegisterServices(ContainerBuilder builder) 
         {
 
             if (builder == null) {
                 throw new ArgumentNullException(nameof(builder));
             }
+
             builder
                 .RegisterType<ProjectService>()
                 .InstancePerLifetimeScope()

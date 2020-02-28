@@ -40,12 +40,13 @@ namespace Crowdfund.Web.Controllers
         {            
             var result = await creators_.AddProjectCreatorAsync(
                 model?.AddProjectCreatorOptions);
+
             if (result == null) {
                 model.ErrorText = "Oops. Something went wrong";
                 return View(model);
             }
-            return Ok();
 
+            return Ok();
 
         }
 

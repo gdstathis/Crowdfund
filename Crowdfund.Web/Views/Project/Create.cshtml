@@ -1,41 +1,40 @@
 ﻿@model Crowdfund.Web.Models.CreateProjectViewModel;
 
-    <form method="post" action="@Url.Action("create", "project")">
+<form method="post" action="@Url.Action("create", "project")">
 
-        <div class="form-group">
-            <label for="@Html.IdFor(c => c.CreateProjectOptions.Title)">Title</label>
-            @Html.TextBoxFor(c => c.CreateProjectOptions.Title, new { @class = "form-control js-title" })
+    <div class="form-group">
+        <label for="@Html.IdFor(c => c.CreateProjectOptions.Title)">Title</label>
+        @Html.TextBoxFor(c => c.CreateProjectOptions.Title, new { @class = "form-control js-title" })
+    </div>
+
+    <div class="form-group">
+        <label for="@Html.IdFor(c => c.CreateProjectOptions.Description)">Description</label>
+        @Html.TextBoxFor(c => c.CreateProjectOptions.Description, new { @class = "form-control js-description" })
+    </div>
+
+    <div class="form-group">
+        <label for="@Html.IdFor(c => c.CreateProjectOptions.Budget)">Budget</label>
+        @Html.TextBoxFor(c => c.CreateProjectOptions.Budget, new { @class = "form-control js-budget" })
+    </div>
+
+    <div class="form-group">
+        <label for="@Html.IdFor(c => c.CreateProjectOptions.Photo)">Url Photo</label>
+        @Html.TextBoxFor(c => c.CreateProjectOptions.Photo, new { @class = "form-control js-photo" })
+        <small id="emailHelp" class="form-text text-muted">
+
+        </small>
+    </div>
+
+    <div class="js-rewards">
+        <input type="text" class="js-reward-description form-control" placeholder="Description" />
+        <input type="text" class="js-reward-amount form-control" placeholder="amount" />
+        <button type="button" class="js-add-reward btn btn-primary btn-sma">Add Reward</button>
+    </div>
+
+    <button type="button" class="btn btn-primary js-btn-create-project">Submit</button>
+    @if (!string.IsNullOrWhiteSpace(Model?.ErrorText)) {
+        <div class="alert alert-danger" role="alert">
+            @Model?.ErrorText
         </div>
-
-        <div class="form-group">
-            <label for="@Html.IdFor(c => c.CreateProjectOptions.Description)">Description</label>
-            @Html.TextBoxFor(c => c.CreateProjectOptions.Description, new { @class = "form-control js-description" })
-        </div>
-
-        <div class="form-group">
-            <label for="@Html.IdFor(c => c.CreateProjectOptions.Budget)">Budget</label>
-            @Html.TextBoxFor(c => c.CreateProjectOptions.Budget, new { @class = "form-control js-budget" })
-        </div>
-
-        <div class="form-group">
-            <label for="@Html.IdFor(c => c.CreateProjectOptions.Photo)">Url Photo</label>
-            @Html.TextBoxFor(c => c.CreateProjectOptions.Photo, new { @class = "form-control js-photo" })
-            <small id="emailHelp" class="form-text text-muted">
-
-            </small>
-        </div>
-        
-        <div class="js-rewards">
-            <input type="text" class="js-reward-description form-control" placeholder="Description" />
-            <input type="text" class="js-reward-amount form-control" placeholder="amount" />
-            <button type="button" class="js-add-reward btn btn-primary btn-sma">Add Reward</button>
-        </div>
-
-        <button type="button" class="btn btn-primary js-btn-create-project">Submit</button>
-        @if (!string.IsNullOrWhiteSpace(Model?.ErrorText))
-        {
-            <div class="alert alert-danger" role="alert">
-                @Model?.ErrorText
-            </div>
-        }
-    </form>
+    }
+</form>

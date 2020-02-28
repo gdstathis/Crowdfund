@@ -36,8 +36,6 @@ namespace CrowdfundCore
         /// </summary>
         public decimal Donate { get; set; }
 
-        //public ICollection<Rewards> Rewards { get; set; }
-
         /// <summary>
         /// 
         /// </summary>

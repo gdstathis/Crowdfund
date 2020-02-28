@@ -33,14 +33,15 @@ namespace CrowdfundCore.Services
                 return new ApiResult<Backer>(
                     StatusCode.BadRequest, "Email and Vatnumber must not be null");
             }
-            var exists = SearchBackersAsync(new SearchBackerOptionsOptions()
-            {
+            var exists = SearchBackersAsync(new SearchBackerOptionsOptions() {
                 Email = options.Email
             }).Any();
+
             if (exists) {
                 return new ApiResult<Backer>(
                     StatusCode.BadRequest, "Already exist Backer with this options");
             }
+
             var Backer = new Backer()
             {
                 Donate = options.Donate,            
@@ -49,9 +50,13 @@ namespace CrowdfundCore.Services
 
             };
 
-            if (!string.IsNullOrEmpty(options.Firstname)) { Backer.Firstname = options.Firstname; }
+            if (!string.IsNullOrEmpty(options.Firstname)) {
+                Backer.Firstname = options.Firstname; 
+            }
             
-            if (!string.IsNullOrEmpty(options.Lastname)) { Backer.Lastname = options.Lastname; }
+            if (!string.IsNullOrEmpty(options.Lastname)) { 
+                Backer.Lastname = options.Lastname; 
+            }
             
             await context.AddAsync(Backer);
             try {
@@ -61,7 +66,8 @@ namespace CrowdfundCore.Services
                 //Console.WriteLine("no new");
                 return new ApiResult<Backer>(
                     StatusCode.InternalServerError, "Could not save Backer") ;
-            }            
+            }       
+            
             return ApiResult<Backer>.CreateSuccess(Backer); 
         }
 
@@ -70,9 +76,11 @@ namespace CrowdfundCore.Services
             if (id <=0) {
                 return false;
             }
+
             if (options == null) {
                 return false;
             }
+
             var Backer = await  context.Set<Backer>().SingleOrDefaultAsync(p=>p.Id==id);
            
             if (Backer == null) {
@@ -101,6 +109,7 @@ namespace CrowdfundCore.Services
             }
 
             context.Update(Backer);
+
             try {
                await context.SaveChangesAsync();
                 Console.WriteLine("Update ok");
@@ -118,14 +127,18 @@ namespace CrowdfundCore.Services
                 return new ApiResult<Backer>(
                         StatusCode.BadRequest, "Null id");
             }
+
             var backer = await context.Set<Backer>().SingleOrDefaultAsync(s => s.Id == id);
+
             if (backer == null) {
                 return new ApiResult<Backer>(
                         StatusCode.NotFound, "Backer not found"); ;
             }
+
             var api = new ApiResult<Backer>();
             api.Data = backer;
             api.ErrorCode = StatusCode.Ok;
+
             return api;
         }
 
@@ -135,17 +148,23 @@ namespace CrowdfundCore.Services
             if (options == null) {
                 return null;
             }
+
             var query = context.Set<Backer>().AsQueryable();
+
             if (!string.IsNullOrWhiteSpace(options.Email)) { 
                 query = query.Where(e => e.Email == options.Email);
             }
+
             if (!string.IsNullOrWhiteSpace(options.Phone)) {
                 query = query.Where(p => p.Phone == options.Phone);
             }
+
             if (options.Id>0) {
                 query = query.Where(i => i.Id == options.Id);
             }
+
             return query.Take(10);
+
         }
     }
 }

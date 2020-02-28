@@ -24,35 +24,44 @@ namespace CrowdfundCore.Data
             modelBuilder.
                 Entity<Backer>().
                 ToTable("Backer");
+
             modelBuilder.
                 Entity<Backer>().
                 HasIndex(p => p.Email).IsUnique();
+
             modelBuilder.
                 Entity<Backer>().
                 HasIndex(p => p.Phone).IsUnique();
+
             modelBuilder.
                 Entity<ProjectCreator>().
                 ToTable("ProjectCreator").Property(p => p.Id).IsRequired();
-      
+
             modelBuilder.
                 Entity<ProjectCreator>().
                 ToTable("ProjectCreator").HasIndex(p => p.Id);
+
             modelBuilder.
                 Entity<Project>().
                 ToTable("Project") ;
+
             modelBuilder.
                 Entity<Project>().
                 ToTable("Project")
                 .HasIndex(p => p.Id).IsUnique();
+
             modelBuilder
                 .Entity<ProjectBacker>()
                 .ToTable("ProjectBacker");
+
             modelBuilder.
                 Entity<Status>().
                 ToTable("Status");
+
             modelBuilder.
                 Entity<Rewards>().
                 ToTable("Rewards");
+
             modelBuilder
                 .Entity<ProjectBacker>()
                 .HasKey(pb => new { pb.ProjectId, pb.Backerid });

@@ -64,6 +64,7 @@ namespace CrowdfundCore.Services
 
             return ApiResult<Rewards>.CreateSuccess(reward);
         }
+
         public Rewards SearchRewardById(int id)
         {
             if (id <= 0)

@@ -26,10 +26,5 @@ namespace CrowdfundCore.Services.Options
         /// </summary>
         public string Phone { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        //    [NotMapped]      
-        //    public ICollection<Rewards> Rewards { get; set; }
     }
 }

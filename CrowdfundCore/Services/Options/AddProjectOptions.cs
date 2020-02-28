@@ -41,6 +41,9 @@ namespace CrowdfundCore.Services.Options
         /// </summary>
         public DateTime Deadline { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public ICollection<Rewards> Rewards { get;set; }
 
     }

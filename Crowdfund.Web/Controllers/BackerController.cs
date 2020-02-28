@@ -17,7 +17,7 @@ namespace Crowdfund.Web.Controllers
         {
              Container = ServiceRegistrator.GetContainer();
              context_ = Container.Resolve<CrowdfundDbContext>();
-            backers_ = Container.Resolve<IBackerService>(); ;
+             backers_ = Container.Resolve<IBackerService>(); ;
         }
 
         public IActionResult Index()
@@ -31,16 +31,18 @@ namespace Crowdfund.Web.Controllers
             return View();
         }
 
-      [HttpPost]  
+        [HttpPost]  
         public async Task<IActionResult> Create(
                 Models.CreateBackerViewModel model)
         {
             var result = await backers_.AddBackerAsync(
                 model?.AddBackerOptions);
+
             if (result == null) {
                 model.ErrorText = "Oops. Something went wrong";
                 return View(model);
             }
+
             return Ok();
 
 

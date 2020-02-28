@@ -12,7 +12,7 @@ namespace CrowdfundCore.Services.Options
         public Project project { get; set; }        
         /// <summary>
         /// 
-       /// </summary>
+        /// </summary>
         public int ProjectId { get; set; }
         /// <summary>
         /// 

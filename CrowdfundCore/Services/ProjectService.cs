@@ -48,8 +48,7 @@ namespace CrowdfundCore.Services
                 Creator = options.Creator,
                 Photo = options.Photo,
                 Video = options.Video,
-                Rewards = options.Rewards,
-              
+                Rewards = options.Rewards
             };
 
             context.Add(newProject);
@@ -74,13 +73,16 @@ namespace CrowdfundCore.Services
                         StatusCode.BadRequest, "Null id");
             }
             var project = await context.Set<Project>().SingleOrDefaultAsync(s => s.Id == id);
+
             if (project == null) {
                 return new ApiResult<Project>(
                         StatusCode.NotFound, "Backer not found"); ;
             }
+
             var api = new ApiResult<Project>();
             api.Data = project;
             api.ErrorCode = StatusCode.Ok;
+
             return api;
         }
 
@@ -130,6 +132,7 @@ namespace CrowdfundCore.Services
                 Console.WriteLine("UPDATE FAIL" + ex);
                 return false;
             }
+
             return true;
         }
 

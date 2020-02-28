@@ -6,7 +6,11 @@ namespace CrowdfundCore.Services.Options
 {
    public class SearchRewardsOptions
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public int id { get; set; }
+
         /// <summary>
         /// 
         /// </summary>

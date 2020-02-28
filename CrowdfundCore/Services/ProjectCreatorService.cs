@@ -67,9 +67,11 @@ namespace CrowdfundCore.Services
             if (id < 0) {
                 return false;
             }
+
             if (options == null) {
                 return false;
             }
+
             if (options.TotalCost <= 0.0M) {
                 return false;
             }
@@ -102,6 +104,7 @@ namespace CrowdfundCore.Services
             }
 
             context.Update(UpdProjectCreator);
+
             try {
                 await context.SaveChangesAsync();
                 Console.WriteLine("Update creator ok");
@@ -109,6 +112,7 @@ namespace CrowdfundCore.Services
                 Console.WriteLine("UPDATE CREATOR FAIL" + ex);
                 return false;
             }
+
             return true;
 
         }
@@ -119,7 +123,9 @@ namespace CrowdfundCore.Services
             if (options == null) {
                 return null;
             }
+
             var query = context.Set<ProjectCreator>().AsQueryable();
+
             if (!string.IsNullOrWhiteSpace(options.Email)) {
                 query = query.Where(e => e.Email == options.Email);
             }
@@ -141,14 +147,18 @@ namespace CrowdfundCore.Services
                 return new ApiResult<ProjectCreator>(
                         StatusCode.BadRequest, "Null id");
             }
+
             var Creator = await context.Set<ProjectCreator>().SingleOrDefaultAsync(s => s.Id == id);
+
             if (Creator == null) {
                 return new ApiResult<ProjectCreator>(
                         StatusCode.NotFound, "Backer not found"); ;
             }
+
             var api = new ApiResult<ProjectCreator>();
             api.Data = Creator;
             api.ErrorCode = StatusCode.Ok;
+
             return api;
         }
 
