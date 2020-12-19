@@ -108,6 +108,8 @@ $emailBacker.on('input', (evt) => {
     buttonBacker();
 });
 function buttonBacker() {
+    vatOk = true
+    emailOk=true
     if (vatOk && emailOk) {
         let $button = $('.js-submit');
         $button.attr('disabled', false);
@@ -155,35 +157,45 @@ $('.js-submit-projectcreator').on('click', () => {
     $('.js-submit-projectcreator').attr('disabled', true);
 
     let email = $('.js-email').val();
-    
-
+    let firstname = $('.js-projectCreatorFirstname').val();
+    let lastname = $('.js-projectCreatorLastname').val();
+    let phone = $('.js-projectCreatorPhone').val();
     let data = JSON.stringify({
-
-        email: email,
-        
+        AddProjectCreatorOptions: {
+            Firstname: firstname,
+            Lastname: lastname,
+            Phone: phone,
+            Email: email,
+        }
     });
 
     $.ajax({
-        url: '/ProjectCreator/CreateProjectCreator',
+        url: '/ProjectCreator/Create',
         type: 'POST',
         contentType: 'application/json',
-        data: data
-    }).done((owner) => {
+        dataType: "json",
+        data: data,
+        async: true
+    }).done(function (data) {
+        console.log(data);
         $('.alert').hide();
-
-        let $alertArea = $('.js-create-projectcreator-success');
-        $alertArea.html(`Successfully added owner with name ${owner.firstname}`);
-        $alertArea.show();
-
-
+        console.log(data);
+        if (data.errorCode == 200) {
+            let $alertArea = $('.js-create-projectcreator-success');
+            $alertArea.html(`Successfully added project creator with fullname: ${data.data.firstname} ${data.data.lastname}`);
+            $alertArea.show();
+        } else {
+            let $failaAlertArea = $('.js-create-projectcreator-alert');
+            $failaAlertArea.html(`Error occured during registration of project creator with error: ${data.errorCode} with text: ${data.errorText}`)
+            $failaAlertArea.show();
+            console.log(data.errorText);
+        }
         $('form.js-create-owner').hide();
     }).fail((xhr) => {
         $('.alert').hide();
-
         let $alertArea = $('.js-create-projectcreator-alert');
         $alertArea.html(xhr.responseText);
         $alertArea.fadeIn();
-
         setTimeout(function () {
             $('.js-submit-owner').attr('disabled', false);
         }, 300);

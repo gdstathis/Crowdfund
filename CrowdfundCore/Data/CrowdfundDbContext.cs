@@ -42,6 +42,10 @@ namespace CrowdfundCore.Data
                 ToTable("ProjectCreator").HasIndex(p => p.Id);
 
             modelBuilder.
+                Entity<ProjectCreator>()
+                .HasIndex(e => e.Email).IsUnique();
+
+            modelBuilder.
                 Entity<Project>().
                 ToTable("Project") ;
 

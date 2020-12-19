@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CrowdfundCore.Migrations
 {
     [DbContext(typeof(CrowdfundDbContext))]
-    [Migration("20200225070532_add-project-id")]
-    partial class addprojectid
+    [Migration("20201219202222_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -210,7 +210,7 @@ namespace CrowdfundCore.Migrations
             modelBuilder.Entity("CrowdfundCore.Model.Rewards", b =>
                 {
                     b.HasOne("CrowdfundCore.Project", "Project")
-                        .WithMany("rewardPackages")
+                        .WithMany("Rewards")
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

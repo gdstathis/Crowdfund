@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Autofac;
+﻿using Autofac;
 using CrowdfundCore;
 using CrowdfundCore.Data;
 using CrowdfundCore.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Crowdfund.Web.Controllers
 {
@@ -23,9 +20,10 @@ namespace Crowdfund.Web.Controllers
             creators_ = Container.Resolve<IProjectCreatorService>();
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
-          return View();
+            return View();
         }
 
         [HttpGet]
@@ -36,19 +34,21 @@ namespace Crowdfund.Web.Controllers
 
         [HttpPost]
         public async Task<IActionResult> Create(
-                  Models.CreateProjectCreatorViewModel model)
-        {            
+                [FromBody] Models.CreateProjectCreatorViewModel model)
+        {
             var result = await creators_.AddProjectCreatorAsync(
                 model?.AddProjectCreatorOptions);
 
-            if (result == null) {
+            if (result == null)
+            {
                 model.ErrorText = "Oops. Something went wrong";
                 return View(model);
             }
 
-            return Ok();
+            return Json(result);
 
         }
+
 
     }
 }
