@@ -151,7 +151,7 @@ $('.js-submit-backer').on('click', () => {
 
 
 
-//VALIDATION GIA TO email tou projectcretor
+//Project creator registration 
 $('.js-submit-projectcreator').on('click', () => {
 
     $('.js-submit-projectcreator').attr('disabled', true);
